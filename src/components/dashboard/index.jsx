@@ -1,11 +1,11 @@
 import React from 'react';
-import Sidebar from "../../common/sidebar";
+import ResponsiveDrawer from "../../common/sidebar";
 
 const Dashboard = () => {
   return (
     <>
-        <Sidebar/>
-        <h1>pankaj</h1>
+        <ResponsiveDrawer/>
+        
     </>
   )
 }
