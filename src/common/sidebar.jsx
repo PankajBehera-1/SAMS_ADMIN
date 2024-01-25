@@ -48,8 +48,8 @@ function ResponsiveDrawer(props) {
     <div>
       <Toolbar />
       <List style={{ marginTop: -64 }}>
-        <NavLink to="/admin/dashboard" style={{ textDecoration: "none" }}>
-          {(isActive) => (
+        <NavLink to="/" style={{ textDecoration: "none" }}>
+          {({isActive}) => (
             <ListItem disablePadding>
               <ListItemButton className={ isActive ? SidebarStyle.dashboard_active_link : SidebarStyle.dashboard }>
                 <ListItemIcon>
@@ -62,7 +62,7 @@ function ResponsiveDrawer(props) {
             </ListItem>
           )}
         </NavLink>
-        <NavLink to="/admin/admission" style={{ textDecoration: "none" }}>
+        <NavLink to="/admission" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton className={isActive ? SidebarStyle.addStudent_active_link : SidebarStyle.addStudent}>
@@ -77,7 +77,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/admin/professor" style={{ textDecoration: "none" }}>
+        <NavLink to="/professors" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton className={isActive ? SidebarStyle.addProfessor_active_link : SidebarStyle.addProfessor}>
@@ -92,7 +92,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/admin/notice" style={{ textDecoration: "none" }}>
+        <NavLink to="/notice" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton className={isActive ? SidebarStyle.addNotice_active_link : SidebarStyle.addNotice}>
@@ -106,7 +106,7 @@ function ResponsiveDrawer(props) {
             </ListItem>
           )}
         </NavLink>
-        <NavLink to="/admin/registration" style={{ textDecoration: "none" }}>
+        <NavLink to="/registration" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton className={isActive ? SidebarStyle.registration_active_link : SidebarStyle.registration}>
@@ -121,7 +121,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/admin/registration" style={{ textDecoration: "none" }}>
+        <NavLink to="/gallery" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton className={isActive ? SidebarStyle.registration_active_link : SidebarStyle.registration}>

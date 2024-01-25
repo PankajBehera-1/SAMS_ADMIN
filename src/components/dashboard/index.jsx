@@ -1,13 +1,15 @@
 import React from 'react';
-import ResponsiveDrawer from "../../common/sidebar";
-
+import { Grid } from '@mui/material';
+import Styleb from './dashboard.module.css'
 const Dashboard = () => {
   return (
     <>
-        <ResponsiveDrawer/>
-        
+      <Grid className={Styleb.tableFilter}>
+        <h3>All Students</h3>
+
+      </Grid>
     </>
   )
 }
 
-export default Dashboard
+export default Dashboard;
