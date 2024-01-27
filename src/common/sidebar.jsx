@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import SidebarStyle from "../common/css/sidebar.module.css";
-import AdminLogo from "../common/images/admin_1.webp";
+import AdminLogo from "../common/images/A1.jpg";
 
 //Icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -240,7 +240,7 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "#133b65",
+          backgroundColor: "#141365",
         }}
       >
         <Toolbar>
@@ -331,7 +331,7 @@ function ResponsiveDrawer(props) {
           PaperProps={{
             sx: {
               marginTop: -1,
-              backgroundColor: "#143b64",
+              backgroundColor: "#141365",
               // color: "black",
               border: "none",
               height: "110vh",
@@ -340,7 +340,7 @@ function ResponsiveDrawer(props) {
         >
           <Grid
             style={{
-              backgroundColor: "#ff9018",
+              backgroundColor: "#cf2a29",
               height: 72,
               display: "flex",
               gap: 4,
@@ -351,7 +351,14 @@ function ResponsiveDrawer(props) {
               alt="Admin Logo"
               style={{ width: "25%", paddingTop: 10, marginLeft: 10 }}
             />
-            <h2 style={{ paddingTop: 25, color: "white", letterSpacing: 10 }}>
+            <h2
+              style={{
+                paddingTop: 25,
+                color: "white",
+                letterSpacing: 10,
+                fontWeight: "800",
+              }}
+            >
               SAMS
             </h2>
           </Grid>
