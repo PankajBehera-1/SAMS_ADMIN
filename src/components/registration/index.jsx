@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import ResponsiveDrawer from "../../common/sidebar";
 import { Grid } from "@mui/material";
 
+import { storage } from "../../firbaseConfig";
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Typography from "@mui/material/Typography";
 
 const Registrations = () => {
+  const [userImage, setUserImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+
+
+  const handleImageUpload = async (event) => {
+    try {
+      const file = event.target.files[0];
+      if (!file) {
+        console.error("No file selected");
+        return;
+      }
+    
+      setUserImage(file);
+    
+      const storageRef = ref(storage, `images/${file.name}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      console.log('Uploaded a blob or file!', snapshot);
+    
+      // Retrieve download URL
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      console.log('File available at', downloadURL);
+    
+      setImageUrl(downloadURL); // Set the image URL state
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      console.error('File input event:', event); // Log event for debugging
+    }
+  };
+
   return (
     <>
       <ResponsiveDrawer />
@@ -47,7 +78,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="firstName">First Name<span style={{color:'red'}}>*</span></label>
+              <label for="firstName">First Name<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -89,7 +120,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="lastName">Last Name<span style={{color:'red'}}>*</span></label>
+              <label for="lastName">Last Name<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -112,7 +143,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} mb={2}>
-              <label for="Gender">Gender<span style={{color:'red'}}>*</span></label>
+              <label for="Gender">Gender<span style={{ color: 'red' }}>*</span></label>
               <br />
 
               <select
@@ -133,7 +164,7 @@ const Registrations = () => {
               </select>
             </Grid>
             <Grid item xs={12} sm={6} mb={2}>
-              <label for="DOB">DOB<span style={{color:'red'}}>*</span></label>
+              <label for="DOB">DOB<span style={{ color: 'red' }}>*</span></label>
               <br />
 
               <input
@@ -175,7 +206,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={-1}>
-              <label for="fatherName">Father Name<span style={{color:'red'}}>*</span></label>
+              <label for="fatherName">Father Name<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -196,7 +227,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={-1}>
-              <label for="motherName">Mother Name<span style={{color:'red'}}>*</span></label>
+              <label for="motherName">Mother Name<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -256,7 +287,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="phoneNo">Phone No<span style={{color:'red'}}>*</span></label>
+              <label for="phoneNo">Phone No<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="number"
@@ -277,7 +308,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="whatsAppNo">WhatsApp No<span style={{color:'red'}}>*</span></label>
+              <label for="whatsAppNo">WhatsApp No<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="number"
@@ -298,7 +329,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="emailId">Email Id<span style={{color:'red'}}>*</span></label>
+              <label for="emailId">Email Id<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -321,7 +352,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={-1}>
-              <label for="fatherContactNo">Father Contact No<span style={{color:'red'}}>*</span></label>
+              <label for="fatherContactNo">Father Contact No<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="number"
@@ -342,7 +373,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={-1}>
-              <label for="motherContactNo">Mother Contact No<span style={{color:'red'}}>*</span></label>
+              <label for="motherContactNo">Mother Contact No<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="number"
@@ -404,7 +435,7 @@ const Registrations = () => {
 
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="city">City/Village<span style={{color:'red'}}>*</span></label>
+              <label for="city">City/Village<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -425,7 +456,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="post">Post<span style={{color:'red'}}>*</span></label>
+              <label for="post">Post<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -446,7 +477,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="dist">Dist<span style={{color:'red'}}>*</span></label>
+              <label for="dist">Dist<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -469,7 +500,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="state">State<span style={{color:'red'}}>*</span></label>
+              <label for="state">State<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -490,7 +521,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="country">Country<span style={{color:'red'}}>*</span></label>
+              <label for="country">Country<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="text"
@@ -511,7 +542,7 @@ const Registrations = () => {
               />
             </Grid>
             <Grid item xs={12} sm={4} mb={2}>
-              <label for="pin">Pin<span style={{color:'red'}}>*</span></label>
+              <label for="pin">Pin<span style={{ color: 'red' }}>*</span></label>
               <br />
               <input
                 type="number"
@@ -534,7 +565,7 @@ const Registrations = () => {
           </Grid>
           <Grid container spacing={0}>
             <Grid item xs={12} sm={12} mb={-1}>
-              <label for="presentAddress">Present Address<span style={{color:'red'}}>*</span></label>
+              <label for="presentAddress">Present Address<span style={{ color: 'red' }}>*</span></label>
               <textarea
                 id="presentAddress"
                 name="presentAddress"
@@ -577,7 +608,7 @@ const Registrations = () => {
                 method="post"
                 enctype="multipart/form-data"
               >
-                <label for="photo">Passport Size Photo<span style={{color:'red'}}>*</span></label>
+                <label for="photo">Passport Size Photo<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <input
                   style={{
@@ -593,98 +624,99 @@ const Registrations = () => {
                   id="fileInput"
                   name="file"
                   accept=".jpg, .jpeg, .png"
+                  onChange={(e) => handleImageUpload(e)}
                 />
               </form>
             </Grid>
-            
-            
-             
-            <Grid item xs={12} sm={4} mb={2}>
-              <form
-                action="/upload"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <label for="12th">12th Certificate<span style={{color:'red'}}>*</span></label>
-                <br />
-                <input
-                  style={{
-                    width: "100%",
-                    height: "5vh",
-                    borderRadius: "5px",
-                    border: "1px solid #888686",
-                    backgroundColor: "rgba(232,232,238,.433)",
-                    fontSize: "15px",
-                    padding: "2%",
-                  }}
-                  type="file"
-                  id="fileInput"
-                  name="file"
-                  accept=".jpg, .jpeg, .png"
-                />
-              </form>
-            </Grid>
-            <Grid item xs={12} sm={4} mb={2}>
-              <form
-                action="/upload"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <label for="12th">12th Marksheet<span style={{color:'red'}}>*</span></label>
-                <br />
-                <input
-                  style={{
-                    width: "100%",
-                    height: "5vh",
-                    borderRadius: "5px",
-                    border: "1px solid #888686",
-                    backgroundColor: "rgba(232,232,238,.433)",
-                    fontSize: "15px",
-                    padding: "2%",
-                  }}
-                  type="file"
-                  id="fileInput"
-                  name="file"
-                  accept=".jpg, .jpeg, .png"
-                />
-              </form>
-            </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-            <Grid item xs={12} sm={4} mb={2}>
-              <form
-                action="/upload"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <label for="10th">10th Certificate<span style={{color:'red'}}>*</span></label>
-                <br />
-                <input
-                  style={{
-                    width: "100%",
-                    height: "5vh",
-                    borderRadius: "5px",
-                    border: "1px solid #888686",
-                    backgroundColor: "rgba(232,232,238,.433)",
-                    fontSize: "15px",
-                    padding: "2%",
-                  }}
-                  type="file"
-                  id="fileInput"
-                  name="file"
-                  accept=".jpg, .jpeg, .png"
-                />
-              </form>
-            </Grid>
-          
 
-<Grid item xs={12} sm={4} mb={2}>
+
+
+            <Grid item xs={12} sm={4} mb={2}>
               <form
                 action="/upload"
                 method="post"
                 enctype="multipart/form-data"
               >
-                <label for="aadhar">Aadhar Photo<span style={{color:'red'}}>*</span></label>
+                <label for="12th">12th Certificate<span style={{ color: 'red' }}>*</span></label>
+                <br />
+                <input
+                  style={{
+                    width: "100%",
+                    height: "5vh",
+                    borderRadius: "5px",
+                    border: "1px solid #888686",
+                    backgroundColor: "rgba(232,232,238,.433)",
+                    fontSize: "15px",
+                    padding: "2%",
+                  }}
+                  type="file"
+                  id="fileInput"
+                  name="file"
+                  accept=".jpg, .jpeg, .png"
+                />
+              </form>
+            </Grid>
+            <Grid item xs={12} sm={4} mb={2}>
+              <form
+                action="/upload"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <label for="12th">12th Marksheet<span style={{ color: 'red' }}>*</span></label>
+                <br />
+                <input
+                  style={{
+                    width: "100%",
+                    height: "5vh",
+                    borderRadius: "5px",
+                    border: "1px solid #888686",
+                    backgroundColor: "rgba(232,232,238,.433)",
+                    fontSize: "15px",
+                    padding: "2%",
+                  }}
+                  type="file"
+                  id="fileInput"
+                  name="file"
+                  accept=".jpg, .jpeg, .png"
+                />
+              </form>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4} mb={2}>
+              <form
+                action="/upload"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <label for="10th">10th Certificate<span style={{ color: 'red' }}>*</span></label>
+                <br />
+                <input
+                  style={{
+                    width: "100%",
+                    height: "5vh",
+                    borderRadius: "5px",
+                    border: "1px solid #888686",
+                    backgroundColor: "rgba(232,232,238,.433)",
+                    fontSize: "15px",
+                    padding: "2%",
+                  }}
+                  type="file"
+                  id="fileInput"
+                  name="file"
+                  accept=".jpg, .jpeg, .png"
+                />
+              </form>
+            </Grid>
+
+
+            <Grid item xs={12} sm={4} mb={2}>
+              <form
+                action="/upload"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <label for="aadhar">Aadhar Photo<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <input
                   style={{
@@ -709,7 +741,7 @@ const Registrations = () => {
                 method="post"
                 enctype="multipart/form-data"
               >
-                <label for="migration">Migration Certificate<span style={{color:'red'}}>*</span></label>
+                <label for="migration">Migration Certificate<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <input
                   style={{
@@ -728,7 +760,7 @@ const Registrations = () => {
                 />
               </form>
             </Grid>
-            
+
           </Grid>
           <button
             style={{

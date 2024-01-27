@@ -166,8 +166,8 @@ const Dashboard = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Stack spacing={2}>
-                    <Pagination count={10} color="primary" />
+                <Stack spacing={1}>
+                    <Pagination count={5} color="primary"  />
                 </Stack>
             </Paper>
         </>
