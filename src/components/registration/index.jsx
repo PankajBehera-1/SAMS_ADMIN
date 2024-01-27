@@ -11,7 +11,7 @@ const Registrations = () => {
   return (
     <>
       <ResponsiveDrawer />
-      <Grid style={{ display: 'flex', alignItems: 'center',marginLeft:'16.5%', marginTop: '5%',maxWidth:'95%' }}>
+      <Grid style={{ display: 'flex', alignItems: 'center',marginLeft:'16.5%', marginTop: '5%' }}>
         
         <Card sx={{ minWidth: 275 }}>
           <CardContent>
