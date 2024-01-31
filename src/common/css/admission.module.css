@@ -1,0 +1,232 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.fullpage {
+  margin-top: 5%;
+  margin-left: 18%;
+}
+.registration input {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 1.3%;
+  width: 65%;
+  outline: none;
+}
+.registration p {
+  margin-top: 2%;
+}
+.registration span {
+  color: red;
+}
+.hr {
+  border: 1px dotted #000;
+  margin-bottom: 2%;
+  margin-top: 9%;
+  width: 97.5%;
+}
+h4 {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 10px 5px;
+  background-color: #133b65;
+  margin-bottom: 2%;
+  width: 97.5%;
+}
+
+.firstline {
+  display: flex;
+  gap: 14vw;
+}
+.name input {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 4%;
+  width: 200%;
+  outline: none;
+}
+.name {
+  margin-top: 1vh;
+}
+.name span {
+  color: red;
+}
+.container {
+  display: flex;
+  gap: 14vw;
+}
+.name select {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 4%;
+  width: 200%;
+  outline: none;
+}
+
+.secondhr {
+  border: 1px dotted #000;
+  margin-bottom: 5%;
+  margin-top: 9%;
+  width: 96%;
+}
+.secondblueborder h4 {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 10px 5px;
+  background-color: #133b65;
+  margin-bottom: 2%;
+  width: 97.5%;
+  margin-top: 1vw;
+}
+.secondcontainer {
+  display: flex;
+  gap: 14vw;
+}
+
+.email input {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 1%;
+  width: 97.5%;
+  outline: none;
+}
+.email p {
+  margin-top: 1vh;
+}
+.email span {
+  color: red;
+}
+
+.adress textarea {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-family: Roboto, sans-serif !important;
+  font-size: 15px;
+  padding: 1%;
+  width: 97.5% !important;
+}
+.adress p {
+  margin-top: 1vh;
+}
+.adress span {
+  color: red;
+}
+
+.thirdblueborder h4 {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 10px 5px;
+  background-color: #133b65;
+  margin-bottom: 2%;
+  width: 97.5%;
+  margin-top: 1vw;
+}
+.education select {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 1%;
+  width: 97.5%;
+  outline: none;
+}
+
+.education span {
+  color: red;
+}
+.thirdcontainer {
+  display: flex;
+  gap: 14vw;
+}
+button {
+  background-color: #133b65 !important;
+  color: #fff !important;
+  padding: 13px 40px !important;
+  text-transform: uppercase;
+  cursor: pointer !important;
+  border-radius: 5px;
+  margin-left: 70vh;
+  margin-top: 3%;
+  margin-bottom: 2%;
+  font-weight: 600;
+}
+.selectname select {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 4%;
+  width: 384%;
+  outline: none;
+  height: 2.5vw;
+}
+
+.selectname p {
+  margin-top: 0.5vw;
+}
+
+.selectname span {
+  color: red;
+}
+
+.coursename input {
+  background-color: rgba(232, 232, 238, 0.433);
+  border: 1px solid #888686;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 3%;
+  width: 139%;
+  outline: none;
+  margin-left: 5.9vw;
+}
+.coursename p {
+  margin-top: 0.5vw;
+  margin-left: 5.9vw;
+}
+.coursename span {
+  color: red;
+}
+
+.image img {
+  position: absolute;
+  width: 10%;
+  margin-left: 64%;
+  margin-top: -88%;
+}
+.uploadphoto {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  background-color: rgb(255, 255, 255);
+}
+
+.uploadphoto input {
+  display: none;
+}
+
+.uploadphoto p span label {
+  color: blue;
+}
+.star {
+  color: red;
+}
+.uploadphoto {
+  position: absolute;
+  margin-left: 62%;
+  margin-top: 3%;
+}
