@@ -22,6 +22,7 @@ import AdminLogo from "../common/images/A1.jpg";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -103,7 +104,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/professors" style={{ textDecoration: "none" }}>
+        <NavLink to="/add_professors" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton
@@ -128,6 +129,38 @@ function ResponsiveDrawer(props) {
                   >
                     {" "}
                     Add Professors
+                  </p>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          )}
+        </NavLink>
+
+        <NavLink to="/view_professors" style={{ textDecoration: "none" }}>
+          {({ isActive }) => (
+            <ListItem disablePadding>
+              <ListItemButton
+                className={
+                  isActive
+                    ? SidebarStyle.addProfessor_active_link
+                    : SidebarStyle.addProfessor
+                }
+              >
+                <ListItemIcon>
+                  <AssignmentIndIcon
+                    style={{ color: isActive ? "#ff9018" : "white" }}
+                  />
+                </ListItemIcon>
+                <ListItemText>
+                  <p
+                    className={
+                      isActive
+                        ? SidebarStyle.title_active_link
+                        : SidebarStyle.title
+                    }
+                  >
+                    {" "}
+                    Professors
                   </p>
                 </ListItemText>
               </ListItemButton>
