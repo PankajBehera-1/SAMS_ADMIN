@@ -240,7 +240,7 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: "#141365",
+          backgroundColor: "#133b65",
         }}
       >
         <Toolbar>
@@ -331,7 +331,7 @@ function ResponsiveDrawer(props) {
           PaperProps={{
             sx: {
               marginTop: -1,
-              backgroundColor: "#141365",
+              backgroundColor: "#133b65",
               // color: "black",
               border: "none",
               height: "110vh",
