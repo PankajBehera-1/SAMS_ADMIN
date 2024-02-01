@@ -10,6 +10,44 @@ const Registrations = () => {
   const [userImage, setUserImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
+  const [registrationData, setregistrationData] = useState({
+    std_f_name: " ",
+    std_m_name: " ",
+    std_l_name: " ",
+    std_gen: " ",
+    std_dob: " ",
+    std_dad_name: " ",
+    std_mom_name: " ",
+    std_guardian: " ",
+    std_phone: " ",
+    std_whatsno: " ",
+    std_email: " ",
+    std_dadno: " ",
+    std_momno: " ",
+    std_guardianno: " ",
+    std_city: " ",
+    std_post: " ",
+    std_dist: " ",
+    std_state: " ",
+    std_country: " ",
+    std_pin: " ",
+    std_presentadds: " ",
+    std_pasport_photo: "null",
+    std_12th_cert: "null",
+    std_12th_marksheet: "null",
+    std_10th_cert: "null",
+    std_aadhar_photo: "null",
+    std_migration_cert: "null"
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setregistrationData((prevregistrationData) => ({
+      prevregistrationData,
+      [name]: value
+    }));
+  };
+
 
   const handleImageUpload = async (event) => {
     try {
@@ -18,17 +56,17 @@ const Registrations = () => {
         console.error("No file selected");
         return;
       }
-    
+
       setUserImage(file);
-    
+
       const storageRef = ref(storage, `images/${file.name}`);
       const snapshot = await uploadBytes(storageRef, file);
       console.log('Uploaded a blob or file!', snapshot);
-    
+
       // Retrieve download URL
       const downloadURL = await getDownloadURL(snapshot.ref);
       console.log('File available at', downloadURL);
-    
+
       setImageUrl(downloadURL); // Set the image URL state
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -83,8 +121,10 @@ const Registrations = () => {
               <input
                 type="text"
                 id="firstName"
-                name="firstName"
+                name="std_f_name"
                 required
+                value={registrationData.std_f_name}
+                onChange={handleInputChange}
                 autocomplete="given-name"
                 style={{
                   width: "100%",
@@ -104,9 +144,11 @@ const Registrations = () => {
               <input
                 type="text"
                 id="middleName"
-                name="middleName"
+                name="std_m_name"
                 required
                 autocomplete="given-name"
+                value={registrationData.std_m_name}
+                onChange={handleInputChange}
                 style={{
                   width: "100%",
                   height: "5vh",
@@ -125,9 +167,12 @@ const Registrations = () => {
               <input
                 type="text"
                 id="lastName"
-                name="lastName"
+                name="std_l_name"
                 required
                 autocomplete="given-name"
+                value={registrationData.std_l_name}
+                onChange={handleInputChange}
+
                 style={{
                   width: "100%",
                   height: "5vh",
@@ -147,6 +192,10 @@ const Registrations = () => {
               <br />
 
               <select
+                name="std_gen"
+                value={registrationData.std_gen}
+                onChange={handleInputChange}
+
                 style={{
                   width: "100%",
                   height: "5vh",
@@ -170,7 +219,10 @@ const Registrations = () => {
               <input
                 type="date"
                 id="dateOfBirth"
-                name="dateOfBirth"
+                name="std_dob"
+                value={registrationData.std_dob}
+                onChange={handleInputChange}
+
                 style={{
                   width: "100%",
                   height: "5vh",
@@ -211,7 +263,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="fatherName"
-                name="fatherName"
+                name="std_dad_name"
+                value={registrationData.std_dad_name}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -232,7 +286,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="motherName"
-                name="motherName"
+                name="std_mom_name"
+                value={registrationData.std_mom_name}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -253,7 +309,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="guardianName"
-                name="guardianName"
+                name="std_guardian"
+                value={registrationData.std_guardian}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -292,7 +350,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="phoneNo"
-                name="phoneNo"
+                name="std_phone"
+                value={registrationData.std_phone}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -313,7 +373,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="whatsAppNo"
-                name="whatsAppNo"
+                name="std_whatsno"
+                value={registrationData.std_whatsno}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -334,7 +396,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="emailId"
-                name="emailId"
+                name="std_email"
+                value={registrationData.std_email}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -357,7 +421,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="fatherContactNo"
-                name="fatherContactNo"
+                name="std_dadno"
+                value={registrationData.std_dadno}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -378,7 +444,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="motherContactNo"
-                name="motherContactNo"
+                name="std_momno"
+                value={registrationData.std_momno}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -399,7 +467,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="guardianNo"
-                name="guardianNo"
+                name="std_guardianno"
+                value={registrationData.std_guardianno}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -440,7 +510,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="city"
-                name="city"
+                name="std_city"
+                value={registrationData.std_city}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -461,7 +533,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="post"
-                name="post"
+                name="std_post"
+                value={registrationData.std_post}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -482,7 +556,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="dist"
-                name="dist"
+                name="std_dist"
+                value={registrationData.std_dist}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -505,7 +581,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="state"
-                name="state"
+                name="std_state"
+                value={registrationData.std_state}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -526,7 +604,9 @@ const Registrations = () => {
               <input
                 type="text"
                 id="country"
-                name="country"
+                name="std_country"
+                value={registrationData.std_country}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -547,7 +627,9 @@ const Registrations = () => {
               <input
                 type="number"
                 id="pin"
-                name="pin"
+                name="std_pin"
+                value={registrationData.std_pin}
+                onChange={handleInputChange}
                 required
                 autocomplete="given-name"
                 style={{
@@ -568,7 +650,9 @@ const Registrations = () => {
               <label for="presentAddress">Present Address<span style={{ color: 'red' }}>*</span></label>
               <textarea
                 id="presentAddress"
-                name="presentAddress"
+                name="std_presentadds"
+                value={registrationData.std_presentadds}
+                onChange={handleInputChange}
                 rows="4"
                 style={{
                   width: "100%",
@@ -611,6 +695,7 @@ const Registrations = () => {
                 <label for="photo">Passport Size Photo<span style={{ color: 'red' }}>*</span></label>
                 <br />
                 <input
+                  
                   style={{
                     width: "100%",
                     height: "5vh",
@@ -622,9 +707,10 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_pasport_photo"
+                  onChange={handleInputChange}
                   accept=".jpg, .jpeg, .png"
-                  onChange={(e) => handleImageUpload(e)}
+                  
                 />
               </form>
             </Grid>
@@ -651,7 +737,8 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_12th_cert"
+                  onChange={handleInputChange}
                   accept=".jpg, .jpeg, .png"
                 />
               </form>
@@ -676,7 +763,8 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_12th_marksheet"
+                  onChange={handleInputChange}
                   accept=".jpg, .jpeg, .png"
                 />
               </form>
@@ -703,7 +791,8 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_10th_cert"
+                  onChange={handleInputChange}
                   accept=".jpg, .jpeg, .png"
                 />
               </form>
@@ -730,7 +819,8 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_aadhar_photo"
+                  onChange={handleInputChange}
                   accept=".jpg, .jpeg, .png"
                 />
               </form>
@@ -755,7 +845,9 @@ const Registrations = () => {
                   }}
                   type="file"
                   id="fileInput"
-                  name="file"
+                  name="std_migration_cert"
+                  onChange={handleInputChange}
+
                   accept=".jpg, .jpeg, .png"
                 />
               </form>
