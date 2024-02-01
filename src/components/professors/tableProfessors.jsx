@@ -15,9 +15,13 @@ import {
     Button,
     TextField,
     Paper,
+    IconButton,
 } from '@mui/material';
 import { Visibility, Edit, Delete, GetApp } from '@mui/icons-material'; // Import MUI icons
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import SearchIcon from '@mui/icons-material/Search';
 
 const SampleTable = () => {
     const [page, setPage] = useState(0);
@@ -81,14 +85,26 @@ const SampleTable = () => {
                 <Grid item style={{ width: "80%", position: "absolute" }}>
 
 
-                    <Grid container direction="row" lg={12} style={{ display: "flex",  gap: 870, marginBottom:"1%" }}>
+                    <Grid container direction="row" lg={12} style={{ display: "flex", gap:770, marginBottom: "1%" }}>
                         <Grid item >
                             <Typography variant="h6" gutterBottom>All Professors</Typography>
                         </Grid>
-                        <Grid item  sx={{display:"flex", gap: 1}}>
-                            <ReplayCircleFilledIcon style={{ width: "12%", height:"3vh",cursor: "pointer" }} />
-
-                            <input type="text" placeholder="Search by Reg. No." />
+                        <Grid item sx={{width:"10%"}}>
+                            <Paper
+                                component="form"
+                                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+                            >
+                
+                                <InputBase
+                                    sx={{ ml: 1, flex: 1 }}
+                                    placeholder="Search Registration Number"
+                                    inputProps={{ 'aria-label': 'search google maps' }}
+                                />
+                                <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                    <SearchIcon />
+                                </IconButton>
+                                
+                            </Paper>
                         </Grid>
 
                     </Grid>
@@ -112,11 +128,11 @@ const SampleTable = () => {
                                         <TableCell>{professor.age}</TableCell>
                                         <TableCell>{professor.department}</TableCell>
                                         <TableCell>{professor.joiningDate}</TableCell>
-                                        <TableCell>
+                                        <TableCell sx={{ display: "flex", spacing: "6" }}>
                                             {/* View, edit, and delete icons */}
-                                            <Visibility color="primary" onClick={handleOpenViewModal} />
-                                            <Edit color="secondary" onClick={handleOpenEditDialog} />
-                                            <Delete color="error" onClick={handleOpenDeleteDialog} />
+                                            <Visibility sx={{ padding: "1px" }} color="primary" onClick={handleOpenViewModal} />
+                                            <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={handleOpenEditDialog} />
+                                            <Delete sx={{ padding: "1px" }} color="error" onClick={handleOpenDeleteDialog} />
                                         </TableCell>
                                     </TableRow>
                                 ))}
