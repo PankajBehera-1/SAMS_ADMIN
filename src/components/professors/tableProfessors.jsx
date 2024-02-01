@@ -110,7 +110,7 @@ const TableProfessors = () => {
 
     return (
         <Paper>
-            <Grid container lg={12} style={{ marginTop: "8%", marginLeft: "18%", }}>
+            <Grid container lg={12} style={{ marginLeft: "18%", }}>
                 <Grid item style={{ width: "80%", position: "absolute" }}>
 
 
