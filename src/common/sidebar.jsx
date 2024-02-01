@@ -221,7 +221,7 @@ function ResponsiveDrawer(props) {
                         : SidebarStyle.title
                     }
                   >
-                    Registrations
+                     Exam Registrations
                   </p>
                 </ListItemText>
               </ListItemButton>
