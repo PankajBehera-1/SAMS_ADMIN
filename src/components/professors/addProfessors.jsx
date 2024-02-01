@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ResponsiveDrawer from "../../common/sidebar";
 import { Grid, colors } from '@mui/material';
 import style from "../../common/css/Profesor.module.css";
+import professor from "../../common/images/professor.png"
 
-import profile from "../../common/images/profile.png";
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,6 +12,38 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const Professors = () => {
+  const [studentData, setStudentData] = useState({
+    prof_emp_id:'',
+    prof_f_name:'',
+    prof_m_name:'',
+    prof_l_name:'',
+    prof_gen:'',
+    prof_dob:'',
+    prof_do_join:'',
+    prof_city:'',
+    prof_country:'',
+    prof_state:'',
+    prof_dist:'',
+    prof_post:'',
+    prof_pin:'',
+    prof_phone:'',
+    prof_alt_phone:'',
+    prof_adds:'',
+    prof_edu:'',
+    prof_qualification:'',
+    prof_position:'',
+    prof_sal:'',
+    prof_photo:''
+
+
+  })
+  const handleInputeChange =(event) => {
+    const {name , value } = event.target;
+    setStudentData((prevFromDate) => ({
+      ...prevFromDate,
+      [name]:value
+    }));
+  };
 
   return (
     <>
@@ -37,13 +69,22 @@ const Professors = () => {
             Employee ID<span>*</span>
           </p>
           <label className={style.EmployeeId}>
-            <input type="text" placeholder="Enter Employee ID"></input>
+            <input type="text" placeholder="Enter Employee ID"
+              name="prof_emp_id"
+              value={studentData.prof_emp_id}
+              onChange={handleInputeChange}
+            ></input>
           </label>
         </Grid>
+        
         <Grid className={style.profilePic}>
-          <img src={profile} alt='profile'></img>
+          <img src={professor} alt='profile'></img>
           <Grid className={style.passportPhoto}>
-            <input type='file' id='inputTag'accept='image/*' name='image'></input>
+            <input type='file' id='inputTag'accept='image/*' 
+              name="prof_photo"
+              value={studentData.prof_photo}
+              onChange={handleInputeChange}
+            ></input>
           <p>
             <span><label for="inputTag">Upload</label></span>
             "Passport Size Photo"
@@ -68,7 +109,10 @@ const Professors = () => {
                 First Name<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter First Name"></input>
+                <input type="text" placeholder="Enter First Name"
+                name="prof_f_name"
+                value={studentData.prof_f_name}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -77,7 +121,11 @@ const Professors = () => {
                 Gender<span>*</span>
               </p>
               <label>
-                <select className={style.gen}>
+                <select className={style.gen}
+                  name="prof_gen"
+                  value={studentData.prof_gen}
+                  onChange={handleInputeChange}
+                >
                   <option>Select</option>
                   <option>Male</option>
                   <option>Femake</option>
@@ -91,7 +139,11 @@ const Professors = () => {
               {" "}
               <p>Middle Name</p>
               <label>
-                <input type="text" placeholder="Enter Middle Name"></input>
+                <input type="text" placeholder="Enter Middle Name"
+                  name="prof_m_name"
+                  value={studentData.prof_f_name}
+                  onChange={handleInputeChange}
+                ></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -100,7 +152,10 @@ const Professors = () => {
                 DOB<span>*</span>
               </p>
               <label>
-                <input type="date"></input>
+                <input type="date"
+                name="prof_dob"
+                value={studentData.prof_dob}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
           </Grid>
@@ -111,7 +166,10 @@ const Professors = () => {
                 Last Name<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter Last Name"></input>
+                <input type="text" placeholder="Enter Last Name"
+                name="prof_l_name"
+                value={studentData.prof_l_name}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -120,7 +178,11 @@ const Professors = () => {
                 Date Of Joinning<span>*</span>
               </p>
               <label>
-                <input type="date"></input>
+                <input type="date"
+                  name="prof_do_join"
+                  value={studentData.prof_do_join}
+                  onChange={handleInputeChange}
+                ></input>
               </label>
             </Grid>
           </Grid>
@@ -136,7 +198,11 @@ const Professors = () => {
                 City/Village<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter City/Village"></input>
+                <input type="text" placeholder="Enter City/Village"
+                  name="prof_city"
+                  value={studentData.prof_city}
+                  onChange={handleInputeChange}
+                ></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -145,7 +211,10 @@ const Professors = () => {
                 Dist<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter  Distric"></input>
+                <input type="text" placeholder="Enter  Distric"
+                name="prof_dist"
+                value={studentData.prof_dist}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -154,7 +223,10 @@ const Professors = () => {
                 Phone Number<span>*</span>
               </p>
               <label>
-                <input type="number" placeholder="Enter Phone Number"></input>
+                <input type="number" placeholder="Enter Phone Number"
+                name="prof_phone"
+                value={studentData.prof_phone}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
           </Grid>
@@ -166,7 +238,10 @@ const Professors = () => {
                 State<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter state"></input>
+                <input type="text" placeholder="Enter state"
+                name="prof_state"
+                value={studentData.prof_state}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -175,7 +250,10 @@ const Professors = () => {
                 Post<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter Post"></input>
+                <input type="text" placeholder="Enter Post"
+                name="prof_post"
+                value={studentData.prof_post}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -184,7 +262,10 @@ const Professors = () => {
                 Alternative Phone No.<span>*</span>
               </p>
               <label>
-                <input type="number" placeholder="Enter Alt no."></input>
+                <input type="number" placeholder="Enter Alt no."
+                name="prof_alt_phone"
+                value={studentData.prof_alt_phone}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
           </Grid>
@@ -195,7 +276,10 @@ const Professors = () => {
                 Country<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter Employee ID"></input>
+                <input type="text" placeholder="country"
+                name="prof_country"
+                value={studentData.prof_country}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -204,7 +288,10 @@ const Professors = () => {
                 Pin Code<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter Employee ID"></input>
+                <input type="number" placeholder="pin code"
+                name="prof_pin"
+                value={studentData.prof_pin}
+                onChange={handleInputeChange}></input>
               </label>
             </Grid>
             <Grid className={style.box}>
@@ -213,14 +300,17 @@ const Professors = () => {
                 Email<span>*</span>
               </p>
               <label>
-                <input type="text" placeholder="Enter Employee ID"></input>
+                <input type="email" placeholder="Email"></input>
               </label>
             </Grid>
           </Grid>
         </Grid>
         <Grid className={style.address}>
           <p>Address <span>*</span></p>
-          <textarea placeholder="Enter Parmanent Address"></textarea>
+          <textarea placeholder="Enter Parmanent Address"
+          name="prof_adds"
+          value={studentData.prof_adds}
+          onChange={handleInputeChange}></textarea>
         </Grid>
 
         <h3 className={style.info}>Programe/Course Information</h3>
@@ -231,7 +321,10 @@ const Professors = () => {
             Education<span>*</span>
           </p>
           <label>
-            <select className={style.SelectCourse}>
+            <select className={style.SelectCourse}
+            name="prof_edu"
+            value={studentData.prof_edu}
+            onChange={handleInputeChange}>
               <option>Select an course</option>
               <option>Diploma</option>
               <option>B-tech</option>
@@ -247,14 +340,20 @@ const Professors = () => {
               Qualification<span>*</span>
             </p>
             <label>
-              <input type="text" placeholder="Enter Qualification"></input>
+              <input type="text" placeholder="Enter Qualification"
+              name="prof_qualification"
+              value={studentData.prof_qualification}
+              onChange={handleInputeChange}></input>
             </label>
           </Grid>
           <Grid className={style.third}>
             <p>
               Position<span>*</span>
             </p>
-            <select className={style.position}>
+            <select className={style.position}
+            name="prof_position"
+            value={studentData.prof_position}
+            onChange={handleInputeChange}>
               <option>Select</option>
               <option>HOD</option>
               <option>Assist.HOD</option>
@@ -267,7 +366,10 @@ const Professors = () => {
             <p>
               Salary<span>*</span>
             </p>
-            <input type="number" placeholder="Enter Salary Per Month"></input>
+            <input type="number" placeholder="Enter Salary Per Month"
+            name="prof_sal"
+            value={studentData.prof_sal}
+            onChange={handleInputeChange}></input>
           </Grid>
         </Grid>
         <a className={style.submit} href='#'>
