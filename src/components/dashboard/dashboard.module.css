@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
   margin: 0;
@@ -13,10 +13,9 @@
   width: 130%;
 }
 
-
 .card {
   margin-top: 10%;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   color: white !important;
   font-weight: 600 !important;
   background-image: linear-gradient(to right, #133b65, #d84219);
@@ -28,13 +27,13 @@
   transform: scale(1.1);
   transition: 0.6s;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   color: white;
   background-image: linear-gradient(to right, #b3c603, #133b65);
 }
 
 .card b {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   font-size: 1.1vw;
   font-weight: 600 !important;
 }
@@ -48,25 +47,27 @@
 }
 
 .tableFilter h3 {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   color: #133b65;
   font-size: 1.5vw;
 }
 
 .tableFilter input {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   font-size: 1vw;
   padding: 1% 1.5% 1% 1.5%;
   outline-color: #063261;
 }
 
 .tableFilter input::placeholder {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   font-size: 1vw;
 }
 
 .tableTitle {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
   font-size: 1vw !important;
 }
-
+.mba b {
+  font-size: 15px;
+}
