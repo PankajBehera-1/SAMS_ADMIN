@@ -26,7 +26,7 @@ import Img from "../../common/images/profile.png";
 
 
 
-const SampleTable = () => {
+const TableProfessors = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(8); // Number of rows per page initially set to 8
     const [openEditDialog, setOpenEditDialog] = useState(false); // State for the edit dialog
@@ -231,4 +231,4 @@ const SampleTable = () => {
     );
 };
 
-export default SampleTable;
+export default TableProfessors;
