@@ -111,10 +111,10 @@ h4 {
   background-color: rgba(232, 232, 238, 0.433);
   border: 1px solid #888686;
   border-radius: 5px;
-  font-family: Roboto, sans-serif !important;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   padding: 1%;
-  width: 97.5% !important;
+  width: 97.5%;
 }
 .adress p {
   margin-top: 1vh;
@@ -151,12 +151,18 @@ h4 {
   gap: 14vw;
 }
 button {
+<<<<<<< HEAD
   background-color: #133b65 !important;
   /* color: #fff; */
   color:rgb(60, 60, 158);
   padding: 13px 40px !important;
+=======
+  background-color: #133b65;
+  color: #fff;
+  padding: 13px 40px;
+>>>>>>> 6a94387f67431dfa602aa69f71939bcbaa792e1c
   text-transform: uppercase;
-  cursor: pointer !important;
+  cursor: pointer;
   border-radius: 5px;
   margin-left: 70vh;
   margin-top: 3%;

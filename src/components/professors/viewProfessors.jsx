@@ -1,9 +1,15 @@
 import React from 'react'
+import ResponsiveDrawer from '../../common/sidebar'
+import TableProfessors from './tableProfessors'
 import CardProfessors from './cardProfessors'
 
-const viewProfessors = () => {
-  return (
-    <CardProfessors/>
-  )
+const ViewProfessors = () => {
+    return (
+        <>
+            <ResponsiveDrawer />
+            <CardProfessors/>
+            <TableProfessors/>
+        </>
+    )
 }
-export default viewProfessors;
+export default ViewProfessors;
