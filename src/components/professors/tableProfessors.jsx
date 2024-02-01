@@ -16,15 +16,12 @@ import {
     TextField,
     Paper,
     IconButton,
+    TableContainer,
+    InputBase,
 } from '@mui/material';
 import { Visibility, Edit, Delete, GetApp } from '@mui/icons-material'; // Import MUI icons
-import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
 import SearchIcon from '@mui/icons-material/Search';
 import Img from "../../common/images/profile.png";
-
-
 
 const TableProfessors = () => {
     const [page, setPage] = useState(0);
@@ -33,6 +30,7 @@ const TableProfessors = () => {
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false); // State for the delete dialog
     const [openViewModal, setOpenViewModal] = useState(false); // State for the view modal
     const [selectedProfessor, setSelectedProfessor] = useState(null); // State to hold the selected professor
+    const [searchQuery, setSearchQuery] = useState("");
 
     const handleOpenEditDialog = () => {
         setOpenEditDialog(true);
@@ -63,33 +61,31 @@ const TableProfessors = () => {
         try {
             // Convert selected professor data to JSON format
             const professorData = JSON.stringify(selectedProfessor);
-            
+
             // Create a Blob object with the JSON data
             const blob = new Blob([professorData], { type: 'application/json' });
-            
+
             // Create a temporary anchor element to trigger the download
             const anchor = document.createElement('a');
             anchor.download = `professor_details_${selectedProfessor.regNo}.json`;
-            
+
             // Create a URL for the Blob object and assign it to the anchor's href attribute
             anchor.href = window.URL.createObjectURL(blob);
-            
+
             // Click the anchor element to trigger the download
             anchor.click();
-            
+
             // Cleanup: Revoke the URL to free up resources
             window.URL.revokeObjectURL(anchor.href);
-            
+
             handleCloseViewModal();
         } catch (error) {
             console.error("Error generating JSON:", error);
         }
     };
-    
 
-
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     const handleChangeRowsPerPage = (event) => {
@@ -108,12 +104,14 @@ const TableProfessors = () => {
         joiningDate: "00/00/0000",
     }));
 
+    const filteredProfessors = professors.filter((professor) =>
+        professor.regNo.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Paper>
             <Grid container lg={12} style={{ marginLeft: "18%", }}>
                 <Grid item style={{ width: "80%", position: "absolute" }}>
-
-
                     <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
                         <Grid item >
                             <Typography variant="h6" gutterBottom>All Professors</Typography>
@@ -123,58 +121,58 @@ const TableProfessors = () => {
                                 component="form"
                                 sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
                             >
-
                                 <InputBase
                                     sx={{ ml: 1, flex: 1 }}
                                     placeholder="Search Registration Number"
                                     inputProps={{ 'aria-label': 'search google maps' }}
+                                    onChange={handleSearchInputChange}
                                 />
                                 <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                     <SearchIcon />
                                 </IconButton>
-
                             </Paper>
                         </Grid>
-
                     </Grid>
-                    <div style={{ overflowX: "auto" }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Age</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Joining Date</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {professors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((professor, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{professor.regNo}</TableCell>
-                                        <TableCell>{professor.name}</TableCell>
-                                        <TableCell>{professor.age}</TableCell>
-                                        <TableCell>{professor.department}</TableCell>
-                                        <TableCell>{professor.joiningDate}</TableCell>
-                                        <TableCell sx={{ display: "flex", spacing: "6" }}>
-                                            {/* View, edit, and delete icons */}
-                                            <Visibility sx={{ padding: "1px" }} color="primary" onClick={() => handleOpenViewModal(professor)} />
-                                            <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={handleOpenEditDialog} />
-                                            <Delete sx={{ padding: "1px" }} color="error" onClick={handleOpenDeleteDialog} />
-                                        </TableCell>
+                    <Grid style={{}}>
+                        <TableContainer component={Paper}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Age</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Joining Date</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </div>
+                                </TableHead>
+                                <TableBody>
+                                    {filteredProfessors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((professor, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell>{professor.regNo}</TableCell>
+                                            <TableCell>{professor.name}</TableCell>
+                                            <TableCell>{professor.age}</TableCell>
+                                            <TableCell>{professor.department}</TableCell>
+                                            <TableCell>{professor.joiningDate}</TableCell>
+                                            <TableCell sx={{ display: "flex", spacing: "6" }}>
+                                                {/* View, edit, and delete icons */}
+                                                <Visibility sx={{ padding: "1px" }} color="primary" onClick={() => handleOpenViewModal(professor)} />
+                                                <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={handleOpenEditDialog} />
+                                                <Delete sx={{ padding: "1px" }} color="error" onClick={handleOpenDeleteDialog} />
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
                     <TablePagination
                         rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
                         component="div"
                         count={totalRows} // Total number of rows
                         rowsPerPage={rowsPerPage}
                         page={page}
-                        onPageChange={handleChangePage}
+                        onPageChange={handleChangeRowsPerPage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
                 </Grid>
@@ -227,7 +225,6 @@ const TableProfessors = () => {
                 </Dialog>
             </Grid>
         </Paper>
-
     );
 };
 

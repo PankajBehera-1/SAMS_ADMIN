@@ -7,8 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import {  Edit, Delete} from '@mui/icons-material'; // Import MUI icons
 import {
   Table,
   TableBody,
@@ -214,19 +213,19 @@ const Gallery = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <EditIcon
+                    <Edit
                       onClick={() => handleEdit(row.id)}
                       style={{
-                        color: "#D5A10B",
+                        color: "purple",
                         width: "20%",
                         cursor: "pointer",
                         marginRight: "8%",
                       }}
                     />
-                    <DeleteForeverIcon
+                    <Delete
                       onClick={() => handleDelete(row.id)}
                       style={{
-                        color: "#E30707",
+                        color: "red",
                         width: "20%",
                         cursor: "pointer",
                       }}
