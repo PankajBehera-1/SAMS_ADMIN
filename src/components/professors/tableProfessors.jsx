@@ -112,29 +112,30 @@ const TableProfessors = () => {
         <Paper>
             <Grid container lg={12} style={{ marginLeft: "18%", }}>
                 <Grid item style={{ width: "80%", position: "absolute" }}>
-                    <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
-                        <Grid item >
-                            <Typography variant="h6" gutterBottom>All Professors</Typography>
-                        </Grid>
-                        <Grid item sx={{ width: "10%" }}>
-                            <Paper
-                                component="form"
-                                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
-                            >
-                                <InputBase
-                                    sx={{ ml: 1, flex: 1 }}
-                                    placeholder="Search Registration Number"
-                                    inputProps={{ 'aria-label': 'search google maps' }}
-                                    onChange={handleSearchInputChange}
-                                />
-                                <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                                    <SearchIcon />
-                                </IconButton>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Grid style={{}}>
-                        <TableContainer component={Paper}>
+
+                    <Grid >
+                        <TableContainer component={Paper} sx={{ mb: 5 }}>
+                            <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
+                                <Grid item sx={{ml:1 ,mt:2, mb:-1}}>
+                                    <Typography variant="h6" gutterBottom>All Professors</Typography>
+                                </Grid>
+                                <Grid item sx={{ width: "10%", mt:1 }}>
+                                    <Paper
+                                        component="form"
+                                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+                                    >
+                                        <InputBase
+                                            sx={{ ml: 1, flex: 1 }}
+                                            placeholder="Search Registration Number"
+                                            inputProps={{ 'aria-label': 'search google maps' }}
+                                            onChange={handleSearchInputChange}
+                                        />
+                                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                            <SearchIcon />
+                                        </IconButton>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -164,17 +165,18 @@ const TableProfessors = () => {
                                     ))}
                                 </TableBody>
                             </Table>
+                            <TablePagination
+                                rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
+                                component="div"
+                                count={totalRows} // Total number of rows
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangeRowsPerPage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                            />
                         </TableContainer>
                     </Grid>
-                    <TablePagination
-                        rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
-                        component="div"
-                        count={totalRows} // Total number of rows
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangeRowsPerPage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
+
                 </Grid>
 
                 {/* Dialog for editing details */}
