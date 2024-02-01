@@ -1,13 +1,9 @@
 import React from 'react'
-import ResponsiveDrawer from '../../common/sidebar'
+import CardProfessors from './cardProfessors'
 
-const ViewProfessors = () => {
-    return (
-        <>
-            <ResponsiveDrawer />
-            
-        </>
-    )
+const viewProfessors = () => {
+  return (
+    <CardProfessors/>
+  )
 }
-
-export default ViewProfessors
+export default viewProfessors;

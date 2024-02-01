@@ -152,7 +152,8 @@ h4 {
 }
 button {
   background-color: #133b65 !important;
-  color: #fff !important;
+  /* color: #fff; */
+  color:rgb(60, 60, 158);
   padding: 13px 40px !important;
   text-transform: uppercase;
   cursor: pointer !important;
