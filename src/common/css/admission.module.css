@@ -151,7 +151,7 @@ h4 {
   gap: 14vw;
 }
 button {
-  background-color: #133b65 !important;
+  background-color: #133b65;
   color: #fff !important;
   padding: 13px 40px !important;
   text-transform: uppercase;
