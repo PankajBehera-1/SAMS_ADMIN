@@ -307,7 +307,7 @@ const Professors = () => {
         </Grid>
         <Grid className={style.address}>
           <p>Address <span>*</span></p>
-          <textarea placeholder="Enter Parmanent Address"
+          <textarea placeholder="Enter Address"
           name="prof_adds"
           value={studentData.prof_adds}
           onChange={handleInputeChange}></textarea>

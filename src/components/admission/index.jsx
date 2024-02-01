@@ -203,11 +203,11 @@ const Admission = () => {
 
         <Grid className={style.adress}>
           <p>
-            Permanent Adress<span>*</span>
+             Adress<span>*</span>
           </p>
           <textarea
             type="text"
-            placeholder="Enter Permanent Address"
+            placeholder="Enter Address"
           ></textarea>
         </Grid>
 
