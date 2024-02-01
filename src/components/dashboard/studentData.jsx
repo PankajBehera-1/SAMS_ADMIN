@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./dashboard.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { Grid, IconButton } from "@mui/material";
+import { Grid, Icon } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,9 +12,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ReplayCircleFilledIcon from "@mui/icons-material/ReplayCircleFilled";
-import PreviewIcon from "@mui/icons-material/Preview";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Visibility, Edit, Delete } from '@mui/icons-material'; // Import MUI icons
 import { Margin } from "@mui/icons-material";
 import ViewStudentDetails from "./viewStudentDetails";
 
@@ -133,20 +131,20 @@ const StudentData = (props) => {
                     align="left"
                     style={{ gap: 1, display: "flex", cursor: "pointer" }}
                   >
-                    <IconButton onClick={() => setOpen(true)}>
-                      <PreviewIcon />
-                    </IconButton>
+                    <Icon onClick={() => setOpen(true)}>
+                      <Visibility style={{color:"primary"}} />
+                    </Icon>
                     {/* style={{ color: "#179903", width: "20%", cursor: "pointer" }} */}
-                    <EditIcon
+                    <Edit
                       style={{
-                        color: "#D5A10B",
+                        color: "secondary",
                         width: "20%",
                         cursor: "pointer",
                       }}
                     />
-                    <DeleteForeverIcon
+                    <Delete
                       style={{
-                        color: "#E30707",
+                        color: "error",
                         width: "20%",
                         cursor: "pointer",
                       }}
