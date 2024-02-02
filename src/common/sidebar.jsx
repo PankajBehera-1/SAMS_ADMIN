@@ -169,7 +169,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/notice" style={{ textDecoration: "none" }}>
+        <NavLink to="/noticeboard" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton
