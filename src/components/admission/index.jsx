@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../../common/sidebar";
 import { Grid } from "@mui/material";
 import style from "../../common/css/admission.module.css";
-import image from "../../common/images/admission.png";
+import image from "../../common/images/graduated.png";
 
 const Admission = () => {
   const [studentData, setstudentData] = useState({
@@ -363,11 +363,21 @@ const Admission = () => {
 
         <Grid className={style.adress}>
           <p>
+<<<<<<< HEAD
              Adress<span>*</span>
+=======
+            Adress<span>*</span>
+>>>>>>> 068c6403bf284613e7225a67dabb9c8364666a44
           </p>
           <textarea
             type="text"
             placeholder="Enter Address"
+<<<<<<< HEAD
+=======
+            name="std_per_adres"
+            value={studentData.std_per_adres}
+            onChange={handleinputchange}
+>>>>>>> 068c6403bf284613e7225a67dabb9c8364666a44
           ></textarea>
         </Grid>
 
