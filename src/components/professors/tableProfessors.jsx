@@ -15,16 +15,22 @@ import {
     Button,
     TextField,
     Paper,
+    IconButton,
+    TableContainer,
+    InputBase,
 } from '@mui/material';
 import { Visibility, Edit, Delete, GetApp } from '@mui/icons-material'; // Import MUI icons
-import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
+import SearchIcon from '@mui/icons-material/Search';
+import Img from "../../common/images/profile.png";
 
-const SampleTable = () => {
+const TableProfessors = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(8); // Number of rows per page initially set to 8
     const [openEditDialog, setOpenEditDialog] = useState(false); // State for the edit dialog
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false); // State for the delete dialog
     const [openViewModal, setOpenViewModal] = useState(false); // State for the view modal
+    const [selectedProfessor, setSelectedProfessor] = useState(null); // State to hold the selected professor
+    const [searchQuery, setSearchQuery] = useState("");
 
     const handleOpenEditDialog = () => {
         setOpenEditDialog(true);
@@ -42,7 +48,8 @@ const SampleTable = () => {
         setOpenDeleteDialog(false);
     };
 
-    const handleOpenViewModal = () => {
+    const handleOpenViewModal = (professor) => {
+        setSelectedProfessor(professor);
         setOpenViewModal(true);
     };
 
@@ -51,12 +58,34 @@ const SampleTable = () => {
     };
 
     const handleDownloadConfirmation = () => {
-        // Implement download logic here
-        handleCloseViewModal();
+        try {
+            // Convert selected professor data to JSON format
+            const professorData = JSON.stringify(selectedProfessor);
+
+            // Create a Blob object with the JSON data
+            const blob = new Blob([professorData], { type: 'application/json' });
+
+            // Create a temporary anchor element to trigger the download
+            const anchor = document.createElement('a');
+            anchor.download = `professor_details_${selectedProfessor.regNo}.json`;
+
+            // Create a URL for the Blob object and assign it to the anchor's href attribute
+            anchor.href = window.URL.createObjectURL(blob);
+
+            // Click the anchor element to trigger the download
+            anchor.click();
+
+            // Cleanup: Revoke the URL to free up resources
+            window.URL.revokeObjectURL(anchor.href);
+
+            handleCloseViewModal();
+        } catch (error) {
+            console.error("Error generating JSON:", error);
+        }
     };
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     const handleChangeRowsPerPage = (event) => {
@@ -75,63 +104,79 @@ const SampleTable = () => {
         joiningDate: "00/00/0000",
     }));
 
+    const filteredProfessors = professors.filter((professor) =>
+        professor.regNo.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Paper>
-            <Grid container lg={12} style={{ marginTop: "8%", marginLeft: "18%" }}>
+            <Grid container lg={12} style={{ marginLeft: "18%", }}>
                 <Grid item style={{ width: "80%", position: "absolute" }}>
 
-
-                    <Grid container direction="row" lg={12} style={{ display: "flex",  gap: 870, marginBottom:"1%" }}>
-                        <Grid item >
-                            <Typography variant="h6" gutterBottom>All Professors</Typography>
-                        </Grid>
-                        <Grid item  sx={{display:"flex", gap: 1}}>
-                            <ReplayCircleFilledIcon style={{ width: "12%", height:"3vh",cursor: "pointer" }} />
-
-                            <input type="text" placeholder="Search by Reg. No." />
-                        </Grid>
-
-                    </Grid>
-                    <div style={{ overflowX: "auto" }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Age</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Joining Date</TableCell>
-                                    <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {professors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((professor, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{professor.regNo}</TableCell>
-                                        <TableCell>{professor.name}</TableCell>
-                                        <TableCell>{professor.age}</TableCell>
-                                        <TableCell>{professor.department}</TableCell>
-                                        <TableCell>{professor.joiningDate}</TableCell>
-                                        <TableCell>
-                                            {/* View, edit, and delete icons */}
-                                            <Visibility color="primary" onClick={handleOpenViewModal} />
-                                            <Edit color="secondary" onClick={handleOpenEditDialog} />
-                                            <Delete color="error" onClick={handleOpenDeleteDialog} />
-                                        </TableCell>
+                    <Grid >
+                        <TableContainer component={Paper} sx={{ mb: 5 }}>
+                            <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
+                                <Grid item sx={{ml:1 ,mt:2, mb:-1}}>
+                                    <Typography variant="h6" gutterBottom>All Professors</Typography>
+                                </Grid>
+                                <Grid item sx={{ width: "10%", mt:1 }}>
+                                    <Paper
+                                        component="form"
+                                        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+                                    >
+                                        <InputBase
+                                            sx={{ ml: 1, flex: 1 }}
+                                            placeholder="Search Registration Number"
+                                            inputProps={{ 'aria-label': 'search google maps' }}
+                                            onChange={handleSearchInputChange}
+                                        />
+                                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                            <SearchIcon />
+                                        </IconButton>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Age</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Joining Date</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </div>
-                    <TablePagination
-                        rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
-                        component="div"
-                        count={totalRows} // Total number of rows
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    />
+                                </TableHead>
+                                <TableBody>
+                                    {filteredProfessors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((professor, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell>{professor.regNo}</TableCell>
+                                            <TableCell>{professor.name}</TableCell>
+                                            <TableCell>{professor.age}</TableCell>
+                                            <TableCell>{professor.department}</TableCell>
+                                            <TableCell>{professor.joiningDate}</TableCell>
+                                            <TableCell sx={{ display: "flex", spacing: "6" }}>
+                                                {/* View, edit, and delete icons */}
+                                                <Visibility sx={{ padding: "1px" }} color="primary" onClick={() => handleOpenViewModal(professor)} />
+                                                <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={handleOpenEditDialog} />
+                                                <Delete sx={{ padding: "1px" }} color="error" onClick={handleOpenDeleteDialog} />
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                            <TablePagination
+                                rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
+                                component="div"
+                                count={totalRows} // Total number of rows
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangeRowsPerPage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                            />
+                        </TableContainer>
+                    </Grid>
+
                 </Grid>
 
                 {/* Dialog for editing details */}
@@ -167,10 +212,11 @@ const SampleTable = () => {
                 <Dialog open={openViewModal} onClose={handleCloseViewModal}>
                     <DialogTitle>View Professor Details</DialogTitle>
                     <DialogContent>
-                        <Typography>Registration Number: {professors.regNo}</Typography>
-                        <Typography>Name: {professors.name}</Typography>
-                        <Typography>Age: {professors.age}</Typography>
-                        <Typography>Department: {professors.department}</Typography>
+                        <img src={Img} alt="Professor" style={{ width: 100, height: 100, borderRadius: '50%' }} />
+                        <Typography>Registration Number: {selectedProfessor && selectedProfessor.regNo}</Typography>
+                        <Typography>Name: {selectedProfessor && selectedProfessor.name}</Typography>
+                        <Typography>Age: {selectedProfessor && selectedProfessor.age}</Typography>
+                        <Typography>Department: {selectedProfessor && selectedProfessor.department}</Typography>
                         {/* Add more details here as needed */}
                         <Typography>Do you want to download the details?</Typography>
                     </DialogContent>
@@ -181,8 +227,7 @@ const SampleTable = () => {
                 </Dialog>
             </Grid>
         </Paper>
-
     );
 };
 
-export default SampleTable;
+export default TableProfessors;
