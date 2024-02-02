@@ -2,9 +2,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
 }
 .main{
-    border: 1px solid black;
+    
     width: 75%;
     margin-top: 7%;
     margin-left: 21%;
@@ -80,7 +81,7 @@ font-size: 17px;
 .file label{
     padding: 3vh;
     height: 2vh;
-    width: 10vh;
+    width: 10%;
     border-radius: 6px;
     border: 1px dashed black;
     margin-top: 15vh;
@@ -90,14 +91,13 @@ font-size: 17px;
     border: 1px dashed blueviolet;
 }
 
-.primarybtn{   
-    position: absolute;
-    top: 1vh;
-    left: 165vh;
+.item button{   
+position: absolute;
+left: 52%;
     background-color:green;
     color: white;
     border: none;
-    margin-top: 30vh;
+    margin-top: -1.5%;
     padding: 2vh;
     width: 20vh;
     cursor: pointer;
