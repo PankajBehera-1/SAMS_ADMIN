@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ResponsiveDrawer from "../../common/sidebar";
 import { Grid, colors } from '@mui/material';
 import style from "../../common/css/Profesor.module.css";
-import professor from "../../common/images/professor.png"
+import professor from "../../common/images/professoravtar1.jpg";
 
 
 import Card from '@mui/material/Card';
