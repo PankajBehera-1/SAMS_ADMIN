@@ -416,15 +416,14 @@ const Admission = () => {
             <p>
               Status<span>*</span>
             </p>
+
             <select
               type="select"
-              // name="status"
-              placeholder="Select"
               name="std_status"
               value={studentData.std_status}
               onChange={handleinputchange}
             >
-              <option value="">Select</option>
+              <option value="">select</option>
               <option value="Hostel">Hostel</option>
               <option value="Day Scolar">Day Scolar</option>
               <option value="Distance">Distance</option>
