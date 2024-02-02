@@ -363,7 +363,7 @@ const Admission = () => {
 
         <Grid className={style.adress}>
           <p>
-            Adress<span>*</span>
+             Adress<span>*</span>
           </p>
           <textarea
             type="text"
