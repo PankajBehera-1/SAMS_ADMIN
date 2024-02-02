@@ -27,6 +27,7 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const drawerWidth = 240;
 
@@ -104,7 +105,7 @@ function ResponsiveDrawer(props) {
           )}
         </NavLink>
 
-        <NavLink to="/add_professors" style={{ textDecoration: "none" }}>
+        {/* <NavLink to="/add_professors" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton
@@ -134,7 +135,7 @@ function ResponsiveDrawer(props) {
               </ListItemButton>
             </ListItem>
           )}
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to="/view_professors" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
@@ -198,7 +199,7 @@ function ResponsiveDrawer(props) {
             </ListItem>
           )}
         </NavLink>
-        <NavLink to="/registration" style={{ textDecoration: "none" }}>
+        <NavLink to="/student" style={{ textDecoration: "none" }}>
           {({ isActive }) => (
             <ListItem disablePadding>
               <ListItemButton
@@ -209,7 +210,7 @@ function ResponsiveDrawer(props) {
                 }
               >
                 <ListItemIcon>
-                  <DescriptionIcon
+                  <AccountCircleIcon
                     style={{ color: isActive ? "#ff9018" : "white" }}
                   />
                 </ListItemIcon>
@@ -221,7 +222,7 @@ function ResponsiveDrawer(props) {
                         : SidebarStyle.title
                     }
                   >
-                     Exam Registrations
+                     Students
                   </p>
                 </ListItemText>
               </ListItemButton>
