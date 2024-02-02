@@ -1,0 +1,179 @@
+.Professor{
+    margin-top: 5%;
+    margin-left: 18%;
+    margin-right: 3%;
+}
+.page1{
+    display: flex;
+}
+.profilePic img{
+    width: 9vw;
+    margin-left: 10vw;
+    margin-bottom: -10vh;
+    margin-top: 5vh;
+}
+.id{
+    margin-top: 8vh;
+    margin-left: -10vw;
+}
+.EmployeeId input{
+    width: 52vw;
+    padding: 1.2%;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+   
+}
+.passportPhoto{
+    margin-top: 10vh;
+    margin-left: 7vw;
+}
+.passportPhoto input{
+   display: none;
+}
+.passportPhoto p span label{
+    color: blue;
+}
+.photo{
+    color: red;
+}
+
+.upload{
+    display: none;
+}
+
+.id p span{
+    color: red;
+}
+.hrx hr{    
+    border: 1px dotted #000;
+    margin-top: 10vh;
+   margin-bottom: 2vh;
+    
+}
+.info{
+    background-color: #133b65;
+    color: white;
+    padding: 0.9%;
+    margin-top: 3vh;
+}
+.firstSection {
+    display: flex;
+    gap: 1vw;
+    line-height: 22%;
+    
+    
+}
+.firstSection input {
+    width: 25vw;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+    padding: 2%;
+    
+   
+}
+.box{
+    margin-top: 4.5vh;
+}
+.box p{
+    margin-bottom: 2vh;
+}
+.box p span {
+    color: red;
+}
+.gen{
+    width: 25vw;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+    padding: 2%;
+}
+.address  textarea{
+    width: 99%;
+    height: 10vh;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+   
+    
+}
+.address{
+    margin-top: 2vh;
+}
+.address p span{
+    color: red;
+}
+.SelectCourse{
+    width: 78vw;
+    height: 7vh;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+
+}
+
+.CourseSelect{
+    display: flex;
+    gap: 1vw;
+    line-height: 22%;
+    margin-top: 5vh;
+}
+.third p{
+    margin-bottom: 2vh;
+}
+.third input{
+    width: 25vw;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+    padding: 2%;
+}
+.third select{
+    width: 25vw;
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px; 
+    padding: 2%;
+}
+.third span {
+    color: red;
+}
+.submit button{
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 33vw;
+    background-color: #133b65!important;
+    color: #fff!important;
+    padding: 10px 40px!important;
+    border-radius: 5px;
+    font-weight: bold;
+   
+
+}
+.submit{
+    text-decoration: none;
+}
+.address textarea{
+    background-color: rgba(232,232,238,.433);
+    border: 1px solid #888686;
+    border-radius: 5px;
+    font-family: Roboto,sans-serif!important;
+    font-size: 15px;
+    padding: 1%;
+    width: 100%!important;
+}
+
+
+
+
+
+
+
+
+
+
+
