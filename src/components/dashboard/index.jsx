@@ -137,11 +137,11 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Grid item sx={{ display: "flex", gap: 2 }}>
+      <Grid item sx={{ display: "flex", gap: 2 ,overflow:"hidden"}}>
         <Grid>
           <ResponsiveDrawer />
         </Grid>
-
+<Grid>
         <Grid className={style.dashboardSection}>
           {/* Counting Cards */}
           <Grid
@@ -150,14 +150,14 @@ const Dashboard = (props) => {
             xs={12}
             md={12}
             lg={12}
-            gap={6}
-            paddingBottom="5%"
+            gap={5}
+            // paddingBottom="-12%"
             paddingRight="1%"
           >
             <Grid item xs={3} md={3} lg={2}>
               <Card className={style.card} onClick={handleOpenViewModal}>
                 <CardContent>
-                  <b>Total Students</b>
+                  <b>Total Professors</b>
                   <p>30</p>
                 </CardContent>
               </Card>
@@ -165,7 +165,7 @@ const Dashboard = (props) => {
             <Grid item xs={3} md={3} lg={2}>
               <Card className={style.card} onClick={handleOpenViewModal}>
                 <CardContent>
-                  <b>Btech Students</b>
+                  <b>Btech Professors</b>
                   <p>10</p>
                 </CardContent>
               </Card>
@@ -173,7 +173,7 @@ const Dashboard = (props) => {
             <Grid item xs={3} md={3} lg={2}>
               <Card className={style.card} onClick={handleOpenViewModal}>
                 <CardContent>
-                  <b>Mtech Students</b>
+                  <b>Mtech Professors</b>
                   <p>10</p>
                 </CardContent>
               </Card>
@@ -181,7 +181,7 @@ const Dashboard = (props) => {
             <Grid item xs={3} md={3} lg={2}>
               <Card className={style.card} onClick={handleOpenViewModal}>
                 <CardContent className={style.mba}>
-                  <b>MBA & MCA Students</b>
+                  <b>MBA Professors</b>
                   <p>10</p>
                 </CardContent>
               </Card>
@@ -189,7 +189,7 @@ const Dashboard = (props) => {
             <Grid item xs={3} md={3} lg={2}>
               <Card className={style.card} onClick={handleOpenViewModal}>
                 <CardContent>
-                  <b>Total Faculties</b>
+                  <b>MCA Professors</b>
                   <p>23</p>
                 </CardContent>
               </Card>
@@ -201,6 +201,70 @@ const Dashboard = (props) => {
 
                     <Button onClick={() => setName('sahoo')} variant="contained">Contained</Button> */}
         </Grid>
+
+
+        <Grid className={style.dashboardSection}>
+          {/* Counting Cards */}
+          <Grid
+            container
+            justifyContent="center"
+            xs={12}
+            md={12}
+            lg={12}
+            gap={5}
+            paddingBottom="5%"
+            paddingRight="1%"
+            marginTop={"-4%"}
+          >
+            <Grid item xs={3} md={3} lg={2}>
+              <Card className={style.card} onClick={handleOpenViewModal}>
+                <CardContent>
+                  <b>Total Student</b>
+                  <p>30</p>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3} md={3} lg={2}>
+              <Card className={style.card} onClick={handleOpenViewModal}>
+                <CardContent>
+                  <b>Btech Student</b>
+                  <p>10</p>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3} md={3} lg={2}>
+              <Card className={style.card} onClick={handleOpenViewModal}>
+                <CardContent>
+                  <b>Mtech Student</b>
+                  <p>10</p>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3} md={3} lg={2}>
+              <Card className={style.card} onClick={handleOpenViewModal}>
+                <CardContent className={style.mba}>
+                  <b>MBA Student</b>
+                  <p>10</p>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3} md={3} lg={2}>
+              <Card className={style.card} onClick={handleOpenViewModal}>
+                <CardContent>
+                  <b>MCA Student</b>
+                  <p>23</p>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+          {/* <Typography variant="h6" gutterBottom>
+                        {name}
+                    </Typography>
+
+                    <Button onClick={() => setName('sahoo')} variant="contained">Contained</Button> */}
+        </Grid>
+        </Grid>
+
 
         {/* Dialog for viewing professor details */}
         <Dialog open={openViewModal} onClose={handleCloseViewModal}>
