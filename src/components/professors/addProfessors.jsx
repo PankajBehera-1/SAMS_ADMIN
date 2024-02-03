@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ResponsiveDrawer from "../../common/sidebar";
 import { Grid, colors } from '@mui/material';
 import style from "../../common/css/Profesor.module.css";
-import professor from "../../common/images/professor.png"
+import professor from "../../common/images/professoravtar1.jpg";
 
 
 import Card from '@mui/material/Card';
@@ -307,7 +307,7 @@ const Professors = () => {
         </Grid>
         <Grid className={style.address}>
           <p>Address <span>*</span></p>
-          <textarea placeholder="Enter Parmanent Address"
+          <textarea placeholder="Enter Address"
           name="prof_adds"
           value={studentData.prof_adds}
           onChange={handleInputeChange}></textarea>

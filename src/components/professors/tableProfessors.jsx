@@ -1,27 +1,28 @@
 import React, { useState } from "react";
-import {
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Grid,
-  TablePagination,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  TextField,
-  Paper,
-  IconButton,
-  TableContainer,
-  InputBase,
-} from "@mui/material";
-import { Visibility, Edit, Delete, GetApp } from "@mui/icons-material"; // Import MUI icons
+import { Visibility, Edit, Delete } from "@mui/icons-material"; // Import MUI icons
 import SearchIcon from "@mui/icons-material/Search";
-import Img from "../../common/images/profile.png";
+import ViewProfessorDialog from "./viewProfessorDialog";
+import EditProfessorDialog from "./editProfessorDialog";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  InputBase,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 const TableProfessors = () => {
   const [page, setPage] = useState(0);
@@ -88,9 +89,9 @@ const TableProfessors = () => {
     setSearchQuery(event.target.value);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (event, newPage) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    setPage(newPage);
   };
 
   const totalRows = 100; // Replace with the actual count of your data
@@ -232,25 +233,10 @@ const TableProfessors = () => {
         </Grid>
 
         {/* Dialog for editing details */}
-        <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
-          <DialogTitle>Edit Professor Details</DialogTitle>
-          <DialogContent>
-            {/* Input fields for editing details */}
-            <TextField label="Reg No" fullWidth sx={{ mb: 1, mt: 1 }} />
-            <TextField label="Name" fullWidth sx={{ mb: 1 }} />
-            <TextField label="Age" fullWidth sx={{ mb: 1 }} />
-            <TextField label="Department" fullWidth sx={{ mb: 1 }} />
-            {/* Add more input fields for additional details */}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseEditDialog} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleCloseEditDialog} color="primary">
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <EditProfessorDialog
+          openEditDialog={openEditDialog}
+          handleCloseEditDialog={handleCloseEditDialog}
+        />
 
         {/* Dialog for deleting details */}
         <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog}>
@@ -271,43 +257,11 @@ const TableProfessors = () => {
         </Dialog>
 
         {/* Modal for viewing details */}
-        <Dialog open={openViewModal} onClose={handleCloseViewModal}>
-          <DialogTitle>View Professor Details</DialogTitle>
-          <DialogContent>
-            <img
-              src={Img}
-              alt="Professor"
-              style={{ width: 100, height: 100, borderRadius: "50%" }}
-            />
-            <Typography>
-              Registration Number:{" "}
-              {selectedProfessor && selectedProfessor.regNo}
-            </Typography>
-            <Typography>
-              Name: {selectedProfessor && selectedProfessor.name}
-            </Typography>
-            <Typography>
-              Age: {selectedProfessor && selectedProfessor.age}
-            </Typography>
-            <Typography>
-              Department: {selectedProfessor && selectedProfessor.department}
-            </Typography>
-            {/* Add more details here as needed */}
-            <Typography>Do you want to download the details?</Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseViewModal} color="primary">
-              Cancel
-            </Button>
-            <Button
-              onClick={handleDownloadConfirmation}
-              color="primary"
-              startIcon={<GetApp />}
-            >
-              Download
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <ViewProfessorDialog
+          openViewModal={openViewModal}
+          handleCloseViewModal={handleCloseViewModal}
+          handleDownloadConfirmation={handleDownloadConfirmation}
+        />
       </Grid>
     </Paper>
   );
