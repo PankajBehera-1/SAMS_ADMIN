@@ -3,7 +3,7 @@ import { Visibility, Edit, Delete } from '@mui/icons-material'; // Import MUI ic
 import SearchIcon from '@mui/icons-material/Search';
 import ViewProfessorDialog from './viewProfessorDialog';
 import EditProfessorDialog from './editProfessorDialog';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 
 
 const TableProfessors = () => {
