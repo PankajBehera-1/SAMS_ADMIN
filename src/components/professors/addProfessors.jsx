@@ -141,7 +141,7 @@ const Professors = () => {
               <label>
                 <input type="text" placeholder="Enter Middle Name"
                   name="prof_m_name"
-                  value={studentData.prof_f_name}
+                  value={studentData.prof_m_name}
                   onChange={handleInputeChange}
                 ></input>
               </label>
