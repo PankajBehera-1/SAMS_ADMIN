@@ -224,7 +224,7 @@ const StudentTable = (props) => {
 
         <EditStudentDialog
           openEditDialog={openEditDialog}
-          handleCloseEditDialog={handleCloseEditDialog}
+          handleCloseEditDial={handleCloseEditDialog}
         />
 
         <DeleteStudentDialog
