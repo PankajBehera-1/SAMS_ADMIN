@@ -137,12 +137,12 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Grid item sx={{ display: "flex", gap: 2 }}>
+      <Grid item sx={{ display: "flex", gap: 2 }} container direction="row" lg={12}>
         <Grid>
           <ResponsiveDrawer />
         </Grid>
 
-        <Grid className={style.dashboardSection}>
+        <Grid className={style.dashboardSection} item lg={12}>
           {/* Counting Cards */}
           <Grid
             container
@@ -223,10 +223,14 @@ const Dashboard = (props) => {
                     <Button onClick={handleDownloadAllProfessors} color="primary" startIcon={<GetApp />}>Download</Button>
                 </DialogActions>
             </Dialog>
+            <Grid item lg={12}>
+            <StudentData/>
+            </Grid>
+            
 
       </Grid>
 
-      <StudentData data={rows} name={"biplab"} />
+      
     </>
   );
 };

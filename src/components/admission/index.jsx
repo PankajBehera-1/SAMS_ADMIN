@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-
+import ResponsiveDrawer from "../../common/sidebar";
+import TableData from "./tableData";
 
 const Admission = () => {
   
 
   return (
     <>
-      Admission
+      <ResponsiveDrawer/>
+      <TableData/>
     </>
   );
 };

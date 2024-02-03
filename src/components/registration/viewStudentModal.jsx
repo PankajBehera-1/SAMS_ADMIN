@@ -8,7 +8,7 @@ const ViewStudentModal = (props) => {
         <>
             {/* Modal for viewing details */}
             <Dialog open={openViewModal} onClose={handleCloseViewModal}>
-                <DialogTitle>View Professor Details</DialogTitle>
+                <DialogTitle>View Student Details</DialogTitle>
                 <DialogContent>
                     <img src={Img} alt="Professor" style={{ width: 100, height: 100, borderRadius: '50%' }} />
                     <Typography>Registration Number: {selectedProfessor?.regNo}</Typography>

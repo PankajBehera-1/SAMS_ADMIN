@@ -12,8 +12,12 @@ import {
     IconButton,
     TableContainer,
     InputBase,
+    FormControl,
+    Select,
+    MenuItem,
+    InputLabel,
 } from '@mui/material';
-import { Visibility, Edit, Delete } from '@mui/icons-material'; // Import MUI icons
+import { Visibility, Edit, Delete, FilterList } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import Img from "../../common/images/profile.png";
 import ViewStudentModal from './viewStudentModal';
@@ -23,27 +27,43 @@ import EditStudentDialog from './editStudentDialog';
 const StudentTable = (props) => {
     const { data } = props;
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(8); // Number of rows per page initially set to 8
-    const [openEditDialog, setOpenEditDialog] = useState(false); // State for the edit dialog
-    const [openDeleteDialog, setOpenDeleteDialog] = useState(false); // State for the delete dialog
-    const [openViewModal, setOpenViewModal] = useState(false); // State for the view modal
-    const [selectedProfessor, setSelectedProfessor] = useState(null); // State to hold the selected professor
+    const [rowsPerPage, setRowsPerPage] = useState(8);
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [openViewModal, setOpenViewModal] = useState(false);
+    const [selectedProfessor, setSelectedProfessor] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
+    const [filters, setFilters] = useState({
+        requestApproved: false,
+        requestPending: false,
+        year: "",
+        department: "",
+    });
 
-    const handleOpenEditDialog = () => {
-        setOpenEditDialog(true);
+    const handleOpenDialog = (dialogType) => {
+        switch (dialogType) {
+            case 'edit':
+                setOpenEditDialog(true);
+                break;
+            case 'delete':
+                setOpenDeleteDialog(true);
+                break;
+            default:
+                break;
+        }
     };
 
-    const handleCloseEditDialog = () => {
-        setOpenEditDialog(false);
-    };
-
-    const handleOpenDeleteDialog = () => {
-        setOpenDeleteDialog(true);
-    };
-
-    const handleCloseDeleteDialog = () => {
-        setOpenDeleteDialog(false);
+    const handleCloseDialog = (dialogType) => {
+        switch (dialogType) {
+            case 'edit':
+                setOpenEditDialog(false);
+                break;
+            case 'delete':
+                setOpenDeleteDialog(false);
+                break;
+            default:
+                break;
+        }
     };
 
     const handleOpenViewModal = (professor) => {
@@ -57,25 +77,13 @@ const StudentTable = (props) => {
 
     const handleDownloadConfirmation = () => {
         try {
-            // Convert selected professor data to JSON format
             const professorData = JSON.stringify(selectedProfessor);
-
-            // Create a Blob object with the JSON data
             const blob = new Blob([professorData], { type: 'application/json' });
-
-            // Create a temporary anchor element to trigger the download
             const anchor = document.createElement('a');
             anchor.download = `professor_details_${selectedProfessor.regNo}.json`;
-
-            // Create a URL for the Blob object and assign it to the anchor's href attribute
             anchor.href = window.URL.createObjectURL(blob);
-
-            // Click the anchor element to trigger the download
             anchor.click();
-
-            // Cleanup: Revoke the URL to free up resources
             window.URL.revokeObjectURL(anchor.href);
-
             handleCloseViewModal();
         } catch (error) {
             console.error("Error generating JSON:", error);
@@ -91,27 +99,101 @@ const StudentTable = (props) => {
         setPage(0);
     };
 
+    const handleFilterChange = (filterType, value) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [filterType]: value,
+        }));
+    };
+
     const totalRows = 100; // Replace with the actual count of your data
 
-    // Sample data for professors
-
-
-    const filteredProfessors = data.filter((professor) =>
-        professor.regNo.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredProfessors = data.filter((professor) => {
+        // Apply search filter
+        const isMatchingSearchQuery = professor.regNo.toLowerCase().includes(searchQuery.toLowerCase());
+        // Apply other filters
+        const isMatchingFilters = Object.keys(filters).every((filterType) => {
+            if (filterType === "requestApproved") {
+                return !filters.requestApproved || professor.requestApproved === filters.requestApproved;
+            } else if (filterType === "requestPending") {
+                return !filters.requestPending || professor.requestPending === filters.requestPending;
+            } else if (filterType === "year") {
+                return !filters.year || professor.year === filters.year;
+            } else if (filterType === "department") {
+                return !filters.department || professor.department === filters.department;
+            }
+            return true;
+        });
+        return isMatchingSearchQuery && isMatchingFilters;
+    });
 
     return (
         <Paper>
-            <Grid container lg={12} style={{ marginLeft: "18%", }}>
+            <Grid container lg={12} style={{ marginLeft: "18%" }}>
                 <Grid item style={{ width: "80%", position: "absolute" }}>
-
-                    <Grid >
+                    <Grid>
                         <TableContainer component={Paper} sx={{ mb: 5 }}>
-                            <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
-                                <Grid item sx={{ ml: 1, mt: 2, mb: -1 }}>
-                                    <Typography variant="h6" gutterBottom>All Professors</Typography>
+                            <Grid container direction="row" lg={12} style={{ display: "flex", marginBottom: "1%" }}>
+                                <Grid item sx={{ ml: 1, mt: 2, mb: -1, mr:3 }}>
+                                    <Typography variant="h6" gutterBottom>All Students</Typography>
                                 </Grid>
                                 <Grid item sx={{ width: "10%", mt: 1 }}>
+                                    <IconButton aria-label="filter" sx={{ p: '10px' }} onClick={() => setFilters({ ...filters, filter: !filters.filter })}>
+                                        <FilterList />
+                                    </IconButton>
+                                </Grid>
+                                {filters.filter && (
+                                    <>
+                                        <Grid item sx={{ width: "10%", mt: 1, ml:-5 }}>
+                                            <FormControl fullWidth>
+                                            <InputLabel id="request">Request</InputLabel>
+                                                <Select
+                                                    value={filters.requestApproved}
+                                                    label="Request"
+                                                    onChange={(event) => handleFilterChange('requestApproved', event.target.value)}
+                                                >
+                                                    <MenuItem value="">Request</MenuItem>
+                                                    <MenuItem value="requestApproved">Request Approved</MenuItem>
+                                                    <MenuItem value="requestApproved">Request Pending</MenuItem>
+                                                    
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                        
+                                        <Grid item sx={{ width: "10%", mt:1, mr:1, ml:1 }}>
+                                            <FormControl fullWidth>
+                                            <InputLabel id="request">Year</InputLabel>
+                                                <Select
+                                                    value={filters.year}
+                                                    label="Year"
+                                                    onChange={(event) => handleFilterChange('year', event.target.value)}
+                                                >
+                                                    <MenuItem value="">Year</MenuItem>
+                                                    {[...Array(new Date().getFullYear() - 2000).keys()].map((year) => (
+                                                        <MenuItem key={year} value={2000 + year}>{2000 + year}</MenuItem>
+                                                    ))}
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item sx={{ width: "10%", mt: 1 }}>
+                                            <FormControl fullWidth>
+                                            <InputLabel id="request">Department</InputLabel>
+                                                <Select
+                                                    value={filters.department}
+                                                    label="Department"
+                                                    onChange={(event) => handleFilterChange('department', event.target.value)}
+                                                >
+                                                    <MenuItem value="">Department</MenuItem>
+                                                    <MenuItem value="btech">B.Tech</MenuItem>
+                                                    <MenuItem value="mtech">M.Tech</MenuItem>
+                                                    <MenuItem value="mba">MBA</MenuItem>
+                                                    <MenuItem value="mca">MCA</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                    </>
+                                )}
+                                <Grid item sx={{ width: "10%", mt: 1 , ml:100, position:"fixed"}}>
                                     <Paper
                                         component="form"
                                         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
@@ -132,8 +214,11 @@ const StudentTable = (props) => {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Year</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Email</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>DOB</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Mobile</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Gender</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
@@ -143,24 +228,26 @@ const StudentTable = (props) => {
                                     {filteredProfessors.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((professor, index) => (
                                         <TableRow key={index}>
                                             <TableCell>{professor.regNo}</TableCell>
+                                            <TableCell>{professor.year}</TableCell>
                                             <TableCell>{professor.name}</TableCell>
+                                            <TableCell>{professor.email}</TableCell>
                                             <TableCell>{professor.dob}</TableCell>
+                                            <TableCell>{professor.mobile}</TableCell>
                                             <TableCell>{professor.department}</TableCell>
                                             <TableCell>{professor.gender}</TableCell>
                                             <TableCell sx={{ display: "flex", spacing: "6" }}>
-                                                {/* View, edit, and delete icons */}
                                                 <Visibility sx={{ padding: "1px" }} color="primary" onClick={() => handleOpenViewModal(professor)} />
-                                                <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={handleOpenEditDialog} />
-                                                <Delete sx={{ padding: "1px" }} color="error" onClick={handleOpenDeleteDialog} />
+                                                <Edit sx={{ padding: "1px", margin: "0 15px 0 15px" }} color="secondary" onClick={() => handleOpenDialog('edit')} />
+                                                <Delete sx={{ padding: "1px" }} color="error" onClick={() => handleOpenDialog('delete')} />
                                             </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
                             </Table>
                             <TablePagination
-                                rowsPerPageOptions={[8, 10, 25]} // Options for rows per page
+                                rowsPerPageOptions={[8, 10, 25]}
                                 component="div"
-                                count={totalRows} // Total number of rows
+                                count={totalRows}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
                                 onPageChange={handleChangeRowsPerPage}
@@ -168,19 +255,15 @@ const StudentTable = (props) => {
                             />
                         </TableContainer>
                     </Grid>
-
                 </Grid>
-
                 <EditStudentDialog
                     openEditDialog={openEditDialog}
-                    handleCloseEditDial={handleCloseEditDialog}
-                />            
-               
-                <DeleteStudentDialog 
-                   openDeleteDialog={openDeleteDialog}
-                   handleCloseDeleteDialog={handleCloseDeleteDialog}
+                    handleCloseEditDial={() => handleCloseDialog('edit')}
                 />
-
+                <DeleteStudentDialog
+                    openDeleteDialog={openDeleteDialog}
+                    handleCloseDeleteDialog={() => handleCloseDialog('delete')}
+                />
                 <ViewStudentModal
                     Img={Img}
                     selectedProfessor={selectedProfessor}

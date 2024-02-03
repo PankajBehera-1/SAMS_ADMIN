@@ -7,15 +7,15 @@ import { Grid } from '@mui/material';
 const StudentDetails = (props) => {
   // const [jingalalll] = props;
   const StudentDetails = [
-    { regNo: "1", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "2", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "3", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "4", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "5", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "6", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "7", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "8", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
-    { regNo: "9", name: "name", dob: "02-12-1994", department: "IT", gender: "male" },
+    { regNo: "1", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "2", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "3", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "4", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "5", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "6", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "7", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "8", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
+    { regNo: "9", year:"0000", name: "name", email: "asd@gmail.com", dob: "02-12-1994", mobile: "1234567890", department: "IT", gender: "male" },
   ]
   return (
     <>
