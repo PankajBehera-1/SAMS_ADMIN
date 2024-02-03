@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import {
+    Table,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    Grid,
+    TablePagination,
+    Typography,
+    Paper,
+    IconButton,
+    TableContainer,
+    InputBase,
+} from '@mui/material';
 import { Visibility, Edit, Delete } from '@mui/icons-material'; // Import MUI icons
 import SearchIcon from '@mui/icons-material/Search';
-import ViewProfessorDialog from './viewProfessorDialog';
-import EditProfessorDialog from './editProfessorDialog';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import Img from "../../common/images/profile.png";
+import ViewStudentModal from './viewStudentModal';
+import DeleteStudentDialog from './deleteStudentDialog';
+import EditStudentDialog from './editStudentDialog';
 
-
-const TableProfessors = () => {
+const StudentTable = (props) => {
+    const { data } = props;
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(8); // Number of rows per page initially set to 8
     const [openEditDialog, setOpenEditDialog] = useState(false); // State for the edit dialog
@@ -71,23 +86,17 @@ const TableProfessors = () => {
         setSearchQuery(event.target.value);
     };
 
-    const handleChangeRowsPerPage = (event, newPage) => {
+    const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(newPage);
+        setPage(0);
     };
-    
+
     const totalRows = 100; // Replace with the actual count of your data
 
     // Sample data for professors
-    const professors = Array.from({ length: totalRows }, (_, index) => ({
-        regNo: `00${index + 1}`,
-        name: `John Doe ${index + 1}`,
-        age: 30 + index,
-        department: "IT",
-        joiningDate: "00/00/0000",
-    }));
 
-    const filteredProfessors = professors.filter((professor) =>
+
+    const filteredProfessors = data.filter((professor) =>
         professor.regNo.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -99,10 +108,10 @@ const TableProfessors = () => {
                     <Grid >
                         <TableContainer component={Paper} sx={{ mb: 5 }}>
                             <Grid container direction="row" lg={12} style={{ display: "flex", gap: 770, marginBottom: "1%" }}>
-                                <Grid item sx={{ml:1 ,mt:2, mb:-1}}>
+                                <Grid item sx={{ ml: 1, mt: 2, mb: -1 }}>
                                     <Typography variant="h6" gutterBottom>All Professors</Typography>
                                 </Grid>
-                                <Grid item sx={{ width: "10%", mt:1 }}>
+                                <Grid item sx={{ width: "10%", mt: 1 }}>
                                     <Paper
                                         component="form"
                                         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
@@ -124,9 +133,9 @@ const TableProfessors = () => {
                                     <TableRow>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Reg No</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Name</TableCell>
-                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Age</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>DOB</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Department</TableCell>
-                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Joining Date</TableCell>
+                                        <TableCell style={{ backgroundColor: "black", color: "white" }}>Gender</TableCell>
                                         <TableCell style={{ backgroundColor: "black", color: "white" }}>Actions</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -135,9 +144,9 @@ const TableProfessors = () => {
                                         <TableRow key={index}>
                                             <TableCell>{professor.regNo}</TableCell>
                                             <TableCell>{professor.name}</TableCell>
-                                            <TableCell>{professor.age}</TableCell>
+                                            <TableCell>{professor.dob}</TableCell>
                                             <TableCell>{professor.department}</TableCell>
-                                            <TableCell>{professor.joiningDate}</TableCell>
+                                            <TableCell>{professor.gender}</TableCell>
                                             <TableCell sx={{ display: "flex", spacing: "6" }}>
                                                 {/* View, edit, and delete icons */}
                                                 <Visibility sx={{ padding: "1px" }} color="primary" onClick={() => handleOpenViewModal(professor)} />
@@ -162,34 +171,26 @@ const TableProfessors = () => {
 
                 </Grid>
 
-                {/* Dialog for editing details */}
-                <EditProfessorDialog
+                <EditStudentDialog
                     openEditDialog={openEditDialog}
-                    handleCloseEditDialog={handleCloseEditDialog}
+                    handleCloseEditDial={handleCloseEditDialog}
+                />            
+               
+                <DeleteStudentDialog 
+                   openDeleteDialog={openDeleteDialog}
+                   handleCloseDeleteDialog={handleCloseDeleteDialog}
                 />
 
-                {/* Dialog for deleting details */}
-                <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog}>
-                    <DialogTitle>Delete Professor</DialogTitle>
-                    <DialogContent>
-                        <Typography>Are you sure you want to delete this professor?</Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseDeleteDialog} color="primary">Cancel</Button>
-                        <Button onClick={handleCloseDeleteDialog} color="primary">Delete</Button>
-                    </DialogActions>
-                </Dialog>
-
-                {/* Modal for viewing details */}
-                <ViewProfessorDialog
+                <ViewStudentModal
+                    Img={Img}
+                    selectedProfessor={selectedProfessor}
                     openViewModal={openViewModal}
                     handleCloseViewModal={handleCloseViewModal}
                     handleDownloadConfirmation={handleDownloadConfirmation}
                 />
-                
             </Grid>
         </Paper>
     );
 };
 
-export default TableProfessors;
+export default StudentTable;
