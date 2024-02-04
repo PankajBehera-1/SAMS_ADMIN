@@ -79,11 +79,10 @@ font-size: 17px;
 
 }
 .file label{
-    padding: 3vh;
-    height: 2vh;
-    width: 10%;
+    padding: 17px;
+   
     border-radius: 6px;
-    border: 1px dashed black;
+    border: 1px solid black;
     margin-top: 15vh;
 }
 .file label:hover{
@@ -94,19 +93,21 @@ font-size: 17px;
 .item button{   
 position: absolute;
 left: 52%;
-    background-color:green;
+    background-color:rgb(29, 24, 105);
     color: white;
     border: none;
     margin-top: -1.5%;
     padding: 2vh;
     width: 20vh;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 10px;
     font-size: 3vh;
+
 }
 .primarybtn:hover{
-    background-color: rgb(10, 181, 10);
-    box-shadow: 0px 1px 2px rgb(0, 0, 0);
+    background-color: rgb(25, 40, 115);
+    color: antiquewhite;
+    box-shadow: 0px 1px 2px rgb(4, 134, 255);
 }
 .firstlist{
     display: flex;

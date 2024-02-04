@@ -49,7 +49,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+                <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>
@@ -81,7 +81,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+              <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>
@@ -113,7 +113,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+              <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>
@@ -148,7 +148,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+              <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>
@@ -180,7 +180,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+              <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>
@@ -212,7 +212,7 @@ const StudentData = () => {
                 </Table>
               </TableContainer>
               <Grid sx={{ display: 'flex', justifyContent: 'right', margin:'1vw 1vw 1vw' }}>
-                <Link href="#" >ViewAll..</Link>
+              <Link href="#"style={{color:"navy", fontWeight:"500",textDecoration:"none"}} >View More..</Link>
               </Grid>
             </Paper>
           </Grid>

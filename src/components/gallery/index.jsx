@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import {  Edit, Delete} from '@mui/icons-material'; // Import MUI icons
+import style from "../../common/css/gallery.module.css"
 import {
   Table,
   TableBody,
@@ -158,7 +159,7 @@ const Gallery = () => {
         <Button
           startIcon={<AddCircleIcon />}
           style={{
-            backgroundColor: "rgb(255, 144, 24)",
+            backgroundColor: "navy",
             color: "white",
             marginTop: "-1.3%",
             marginRight: "3%",
@@ -213,7 +214,7 @@ const Gallery = () => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Edit
+                    <Edit className={style.hoveradd}
                       onClick={() => handleEdit(row.id)}
                       style={{
                         color: "purple",
@@ -222,7 +223,7 @@ const Gallery = () => {
                         marginRight: "8%",
                       }}
                     />
-                    <Delete
+                    <Delete className={style.hoveradd}
                       onClick={() => handleDelete(row.id)}
                       style={{
                         color: "red",

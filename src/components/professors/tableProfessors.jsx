@@ -3,6 +3,7 @@ import { Visibility, Edit, Delete } from "@mui/icons-material"; // Import MUI ic
 import SearchIcon from "@mui/icons-material/Search";
 import ViewProfessorDialog from "./viewProfessorDialog";
 import EditProfessorDialog from "./editProfessorDialog";
+import style from "../../common/css/Profesor.module.css"
 import {
   Button,
   Dialog,
@@ -138,8 +139,8 @@ const TableProfessors = () => {
                     }}
                   >
                     <InputBase
-                      sx={{ ml: 1, flex: 1 }}
-                      placeholder="Search Registration Number"
+                      sx={{ ml: 1, flex: 1 ,color:"midnightblue"}}
+                      placeholder="Search by Registration Number"
                       inputProps={{ "aria-label": "search google maps" }}
                       onChange={handleSearchInputChange}
                     />
@@ -148,7 +149,7 @@ const TableProfessors = () => {
                       sx={{ p: "10px" }}
                       aria-label="search"
                     >
-                      <SearchIcon />
+                      <SearchIcon style={{color:"black"}}/>
                     </IconButton>
                   </Paper>
                 </Grid>
@@ -212,17 +213,17 @@ const TableProfessors = () => {
                         <TableCell>{professor.joiningDate}</TableCell>
                         <TableCell sx={{ display: "flex", spacing: "6" }}>
                           {/* View, edit, and delete icons */}
-                          <Visibility
+                          <Visibility className={style.hoveradd}
                             sx={{ padding: "1px" }}
                             color="primary"
                             onClick={() => handleOpenViewModal(professor)}
                           />
-                          <Edit
+                          <Edit className={style.hoveradd}
                             sx={{ padding: "1px", margin: "0 15px 0 15px" }}
                             color="secondary"
                             onClick={handleOpenEditDialog}
                           />
-                          <Delete
+                          <Delete className={style.hoveradd}
                             sx={{ padding: "1px" }}
                             color="error"
                             onClick={handleOpenDeleteDialog}

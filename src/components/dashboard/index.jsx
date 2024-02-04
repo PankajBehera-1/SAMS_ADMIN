@@ -25,7 +25,7 @@ const ViewDashboard = () => {
           <Cards />
         </Grid>
         <Grid item lg={12}>
-        <Button sx={{ml:45, mb:5, backgroundColor:"orange"}} onClick={() => {handleOpenDialog()}} color="primary"><AddCircleIcon/>Give Access To</Button>
+        <Button sx={{ml:45, mb:5, backgroundColor:"paleturquoise", color:"black"}} onClick={() => {handleOpenDialog()}} color="primary"><AddCircleIcon style={{color:"dimgray"}}/>Give Access To</Button>
 
         </Grid>
         <Grid item lg={12}>

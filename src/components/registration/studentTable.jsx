@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from "../../common/css/Profesor.module.css"
 import {
   Table,
   TableHead,
@@ -253,17 +254,17 @@ const StudentTable = (props) => {
                         <TableCell>{professor.gender}</TableCell>
                         <TableCell sx={{ display: "flex", spacing: "6" }}>
                           {/* View, edit, and delete icons */}
-                          <Visibility
+                          <Visibility className={style.hoveradd}
                             sx={{ padding: "1px" }}
                             color="primary"
                             onClick={() => handleOpenViewModal(professor)}
                           />
-                          <Edit
+                          <Edit className={style.hoveradd}
                             sx={{ padding: "1px", margin: "0 15px 0 15px" }}
                             color="secondary"
                             onClick={handleOpenEditDialog}
                           />
-                          <Delete
+                          <Delete className={style.hoveradd}
                             sx={{ padding: "1px" }}
                             color="error"
                             onClick={handleOpenDeleteDialog}
