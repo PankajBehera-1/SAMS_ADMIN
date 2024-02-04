@@ -99,7 +99,9 @@ const TableProfessors = () => {
   const professors = Array.from({ length: totalRows }, (_, index) => ({
     regNo: `00${index + 1}`,
     name: `John Doe ${index + 1}`,
+    email: "qwer@gmail.com",
     age: 30 + index,
+    mobile: "1234567890",
     department: "IT",
     joiningDate: "00/00/0000",
   }));
@@ -167,7 +169,17 @@ const TableProfessors = () => {
                     <TableCell
                       style={{ backgroundColor: "black", color: "white" }}
                     >
+                      Email
+                    </TableCell>
+                    <TableCell
+                      style={{ backgroundColor: "black", color: "white" }}
+                    >
                       Age
+                    </TableCell>
+                    <TableCell
+                      style={{ backgroundColor: "black", color: "white" }}
+                    >
+                      Mobile
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "black", color: "white" }}
@@ -193,7 +205,9 @@ const TableProfessors = () => {
                       <TableRow key={index}>
                         <TableCell>{professor.regNo}</TableCell>
                         <TableCell>{professor.name}</TableCell>
+                        <TableCell>{professor.email}</TableCell>
                         <TableCell>{professor.age}</TableCell>
+                        <TableCell>{professor.mobile}</TableCell>
                         <TableCell>{professor.department}</TableCell>
                         <TableCell>{professor.joiningDate}</TableCell>
                         <TableCell sx={{ display: "flex", spacing: "6" }}>

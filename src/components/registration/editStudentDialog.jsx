@@ -1,11 +1,8 @@
-import { Dialog, DialogContent, DialogActions, Button } from "@mui/material";
+import { Dialog, DialogContent, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-
 import React, { useState } from "react";
-
 import { Grid } from "@mui/material";
 import style from "../../common/css/admission.module.css";
-// import images from "../../common/images/graduated.png";
 import avtar from "../../common/images/graduated.png";
 
 const EditStudentDialog = (props) => {
@@ -599,9 +596,9 @@ const EditStudentDialog = (props) => {
               <Grid className={style.thirdcoloumn}></Grid>
             </Grid>
 
-            <button type="submit" onClick={handleCloseEditDialog}>
+            <Button sx={{ mt: 3, justifyContent: "center", backgroundColor: "blue", color: "white" }} type="submit" onClick={handleCloseEditDialog}>
               Submit
-            </button>
+            </Button>
           </Grid>
         </DialogContent>
       </Dialog>

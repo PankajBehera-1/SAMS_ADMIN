@@ -12,8 +12,15 @@ import {
   IconButton,
   TableContainer,
   InputBase,
+  MenuItem,
+  Select,
 } from "@mui/material";
-import { Visibility, Edit, Delete } from "@mui/icons-material"; // Import MUI icons
+import {
+  Visibility,
+  Edit,
+  Delete,
+  FilterList,
+} from "@mui/icons-material"; // Import MUI icons
 import SearchIcon from "@mui/icons-material/Search";
 import Img from "../../common/images/profile.png";
 import ViewStudentModal from "./viewStudentModal";
@@ -29,6 +36,8 @@ const StudentTable = (props) => {
   const [openViewModal, setOpenViewModal] = useState(false); // State for the view modal
   const [selectedProfessor, setSelectedProfessor] = useState(null); // State to hold the selected professor
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedYear, setSelectedYear] = useState(""); // State to hold the selected year
+  const [selectedDepartment, setSelectedDepartment] = useState(""); // State to hold the selected department
 
   const handleOpenEditDialog = () => {
     setOpenEditDialog(true);
@@ -109,11 +118,11 @@ const StudentTable = (props) => {
                 container
                 direction="row"
                 lg={12}
-                style={{ display: "flex", gap: 770, marginBottom: "1%" }}
+                style={{ display: "flex", gap: 550, marginBottom: "1%" }}
               >
                 <Grid item sx={{ ml: 1, mt: 2, mb: -1 }}>
                   <Typography variant="h6" gutterBottom>
-                    All Professors
+                    All Students
                   </Typography>
                 </Grid>
                 <Grid item sx={{ width: "10%", mt: 1 }}>
@@ -123,9 +132,46 @@ const StudentTable = (props) => {
                       p: "2px 4px",
                       display: "flex",
                       alignItems: "center",
-                      width: 300,
+                      width: 510,
                     }}
                   >
+                    <IconButton
+                      type="button"
+                      sx={{ p: "10px" }}
+                      aria-label="filter"
+                    >
+                      <FilterList />
+                    </IconButton>
+                    <Select
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                      variant="standard"
+                      displayEmpty
+                      sx={{ mx: 1 }}
+                    >
+                      <MenuItem value="" disabled>
+                        Year
+                      </MenuItem>
+                      {/* Add options for year */}
+                      <MenuItem value={2022}>2022</MenuItem>
+                      <MenuItem value={2023}>2023</MenuItem>
+                      <MenuItem value={2024}>2024</MenuItem>
+                    </Select>
+                    <Select
+                      value={selectedDepartment}
+                      onChange={(e) => setSelectedDepartment(e.target.value)}
+                      variant="standard"
+                      displayEmpty
+                      sx={{ mx: 1 }}
+                    >
+                      <MenuItem value="" disabled>
+                        Department
+                      </MenuItem>
+                      {/* Add options for department */}
+                      <MenuItem value="Computer Science">Computer Science</MenuItem>
+                      <MenuItem value="Electrical Engineering">Electrical Engineering</MenuItem>
+                      <MenuItem value="Mechanical Engineering">Mechanical Engineering</MenuItem>
+                    </Select>
                     <InputBase
                       sx={{ ml: 1, flex: 1 }}
                       placeholder="Search Registration Number"
@@ -153,12 +199,27 @@ const StudentTable = (props) => {
                     <TableCell
                       style={{ backgroundColor: "black", color: "white" }}
                     >
+                      Year
+                    </TableCell>
+                    <TableCell
+                      style={{ backgroundColor: "black", color: "white" }}
+                    >
                       Name
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "black", color: "white" }}
                     >
+                      Email
+                    </TableCell>
+                    <TableCell
+                      style={{ backgroundColor: "black", color: "white" }}
+                    >
                       DOB
+                    </TableCell>
+                    <TableCell
+                      style={{ backgroundColor: "black", color: "white" }}
+                    >
+                      Mobile
                     </TableCell>
                     <TableCell
                       style={{ backgroundColor: "black", color: "white" }}
@@ -183,8 +244,11 @@ const StudentTable = (props) => {
                     .map((professor, index) => (
                       <TableRow key={index}>
                         <TableCell>{professor.regNo}</TableCell>
+                        <TableCell>{professor.year}</TableCell>
                         <TableCell>{professor.name}</TableCell>
+                        <TableCell>{professor.email}</TableCell>
                         <TableCell>{professor.dob}</TableCell>
+                        <TableCell>{professor.mobile}</TableCell>
                         <TableCell>{professor.department}</TableCell>
                         <TableCell>{professor.gender}</TableCell>
                         <TableCell sx={{ display: "flex", spacing: "6" }}>
