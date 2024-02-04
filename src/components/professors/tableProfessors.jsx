@@ -271,6 +271,7 @@ const TableProfessors = () => {
 
         {/* Modal for viewing details */}
         <ViewProfessorDialog
+          
           openViewModal={openViewModal}
           handleCloseViewModal={handleCloseViewModal}
           handleDownloadConfirmation={handleDownloadConfirmation}
